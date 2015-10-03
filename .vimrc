@@ -4,28 +4,19 @@ filetype off                  " required
 " set the runtime path to include Vundle and initialize
  set rtp+=~/.vim/bundle/Vundle.vim
  call vundle#begin()
+ "common
 Plugin 'gmarik/Vundle.vim'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'sickill/vim-monokai'
 Plugin 'Valloric/YouCompleteMe'
-Plugin 'Shougo/neocomplete.vim'
+Plugin 'majutsushi/tagbar'
 Plugin 'easymotion/vim-easymotion'
-"Plugin 'scrooloose/syntastic'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'maksimr/vim-jsbeautify'
 Plugin 'git://github.com/scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'git://github.com/tpope/vim-fugitive.git'
-Plugin 'Lokaltog/powerline'
 Plugin 'chriskempson/base16-vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'eagletmt/ghcmod-vim'
-Plugin 'eagletmt/neco-ghc'
-Plugin 'lukerandall/haskellmode-vim'
 Plugin 'Shougo/vimproc.vim'
-Plugin 'kchmck/vim-coffee-script'
-Plugin 'wizicer/vim-jison'
 Plugin 'editorconfig/editorconfig-vim'
 "HTML
 Plugin 'git://github.com/othree/html5.vim.git'
@@ -43,6 +34,9 @@ Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
 Plugin 'git://github.com/pangloss/vim-javascript.git'
 Plugin 'git://github.com/itspriddle/vim-jquery.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'maksimr/vim-jsbeautify'
+Plugin 'wizicer/vim-jison'
 "Snippets
 Bundle "MarcWeber/vim-addon-mw-utils"
 Bundle "tomtom/tlib_vim"
@@ -50,9 +44,14 @@ Bundle "garbas/vim-snipmate"
 Bundle "honza/vim-snippets"
 "Color themes
 Bundle "altercation/vim-colors-solarized"
+Plugin 'flazz/vim-colorschemes'
+Plugin 'sickill/vim-monokai'
 "Markdown
 Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
+"Clojure
+Plugin 'guns/vim-clojure-static'
+Plugin 'tpope/vim-fireplace'
 "Go lang
 Plugin 'fatih/vim-go'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -67,8 +66,13 @@ set term=screen-256color
 set t_Co=256
 let g:rehash256 = 1
 set background=dark
+set cursorline
 colorscheme monokai
 let g:airline_theme='badwolf'
+let mapleader=","
+
+"replace word under cursor
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " set the runtime path to include Vundle and initialize
 set guifont=Inconsolata\ for\ Powerline:h16
@@ -78,6 +82,9 @@ set fillchars+=stl:\ ,stlnc:\
 syntax enable
 filetype plugin on
 set laststatus=2
+
+"exclure some directories from the ctrlp search
+let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bower_components)|(\.(swp|ico|git|svn))$'
 
 "Airline settings
 let g:airline#extensions#tabline#enabled = 1
