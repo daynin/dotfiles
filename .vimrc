@@ -11,28 +11,29 @@ Plugin 'majutsushi/tagbar'
 Plugin 'easymotion/vim-easymotion'
 Plugin 'bling/vim-airline'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'git://github.com/scrooloose/nerdtree.git'
+Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
-Plugin 'git://github.com/tpope/vim-fugitive.git'
+Plugin 'tpope/vim-fugitive.git'
 Plugin 'chriskempson/base16-vim'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Shougo/vimproc.vim'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'gregsexton/gitv'
 "HTML
-Plugin 'git://github.com/othree/html5.vim.git'
-Plugin 'git://github.com/hokaccha/vim-html5validator.git'
-Plugin 'git://github.com/tpope/vim-haml.git'
-Plugin 'git://github.com/gregsexton/MatchTag.git'
+Plugin 'othree/html5.vim.git'
+Plugin 'hokaccha/vim-html5validator.git'
+Plugin 'tpope/vim-haml.git'
+Plugin 'gregsexton/MatchTag.git'
 Plugin 'mattn/emmet-vim'
 "CSS/LESS
-Plugin 'git://github.com/hail2u/vim-css3-syntax.git'
-Plugin 'git://github.com/ap/vim-css-color.git'
-Plugin 'git://github.com/groenewege/vim-less.git'
-Plugin 'git://github.com/miripiruni/vim-better-css-indent.git'
-Plugin 'git://github.com/miripiruni/CSScomb-for-Vim.git'
+Plugin 'hail2u/vim-css3-syntax.git'
+Plugin 'ap/vim-css-color.git'
+Plugin 'groenewege/vim-less.git'
+Plugin 'miripiruni/vim-better-css-indent.git'
+Plugin 'miripiruni/CSScomb-for-Vim.git'
 "JavaScript
-Plugin 'git://github.com/pangloss/vim-javascript.git'
-Plugin 'git://github.com/itspriddle/vim-jquery.git'
+Plugin 'pangloss/vim-javascript.git'
+Plugin 'itspriddle/vim-jquery.git'
 Plugin 'https://github.com/jiangmiao/auto-pairs'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'maksimr/vim-jsbeautify'
@@ -70,8 +71,6 @@ set cursorline
 colorscheme monokai
 let g:airline_theme='badwolf'
 let mapleader=","
-
-"replace word under cursor
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " set the runtime path to include Vundle and initialize
