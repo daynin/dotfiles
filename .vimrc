@@ -14,14 +14,11 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'scrooloose/nerdtree.git'
 Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-fugitive.git'
-Plugin 'chriskempson/base16-vim'
 Plugin 'scrooloose/nerdcommenter'
-Plugin 'Shougo/vimproc.vim'
+Plugin 'Xuyuanp/nerdtree-git-plugin'
 Plugin 'editorconfig/editorconfig-vim'
-Plugin 'gregsexton/gitv'
 "HTML
 Plugin 'othree/html5.vim.git'
-Plugin 'hokaccha/vim-html5validator.git'
 Plugin 'tpope/vim-haml.git'
 Plugin 'gregsexton/MatchTag.git'
 Plugin 'mattn/emmet-vim'
@@ -29,30 +26,18 @@ Plugin 'mattn/emmet-vim'
 Plugin 'hail2u/vim-css3-syntax.git'
 Plugin 'ap/vim-css-color.git'
 Plugin 'groenewege/vim-less.git'
-Plugin 'miripiruni/vim-better-css-indent.git'
-Plugin 'miripiruni/CSScomb-for-Vim.git'
+Plugin 'cakebaker/scss-syntax.vim'
 "JavaScript
-Plugin 'pangloss/vim-javascript.git'
-Plugin 'itspriddle/vim-jquery.git'
-Plugin 'https://github.com/jiangmiao/auto-pairs'
-Plugin 'kchmck/vim-coffee-script'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'maksimr/vim-jsbeautify'
 Plugin 'wizicer/vim-jison'
-"Snippets
-Bundle "MarcWeber/vim-addon-mw-utils"
-Bundle "tomtom/tlib_vim"
-Bundle "garbas/vim-snipmate"
-Bundle "honza/vim-snippets"
+Plugin 'jelera/vim-javascript-syntax'
 "Color themes
 Bundle "altercation/vim-colors-solarized"
 Plugin 'flazz/vim-colorschemes'
-Plugin 'sickill/vim-monokai'
+Plugin 'tomasr/molokai'
 "Markdown
-Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
-"Clojure
-Plugin 'guns/vim-clojure-static'
-Plugin 'tpope/vim-fireplace'
 "Go lang
 Plugin 'fatih/vim-go'
 Plugin 'nsf/gocode', {'rtp': 'vim/'}
@@ -61,17 +46,18 @@ Plugin 'digitaltoad/vim-jade'
 call vundle#end()
 
 "Settings
-set nocompatible              " be iMproved, required
 set shell=/bin/sh
 set term=screen-256color
 set t_Co=256
 let g:rehash256 = 1
 set background=dark
 set cursorline
-colorscheme monokai
-let g:airline_theme='badwolf'
+colorscheme hybrid
 let mapleader=","
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
+hi Search guibg=peru guifg=wheat
+hi Search ctermfg=yellow ctermbg=blue
 
 " set the runtime path to include Vundle and initialize
 set guifont=Inconsolata\ for\ Powerline:h16
@@ -137,12 +123,15 @@ set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 set clipboard^=unnamed
 set clipboard^=unnamedplus"
 
+"persistent undo history
+"if has('persistent_undo')      "check if your vim version supports it
+  "set undofile                 "turn on the feature
+  "set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
+"endif
+
 "new tab
 nnoremap <c-t>     :tabnew<CR>
 
-:highlight Pmenu guibg=gray gui=bold
-hi Search guibg=peru guifg=wheat
-highlight Search ctermfg=black
 set hlsearch
 set incsearch
 set guioptions-=T
@@ -171,6 +160,7 @@ autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
 autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
+autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
 
 " ==================== YouCompleteMe ====================
