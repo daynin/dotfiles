@@ -1,149 +1,112 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
-
-" set the runtime path to include Vundle and initialize
- set rtp+=~/.vim/bundle/Vundle.vim
- call vundle#begin()
- "common
-Plugin 'gmarik/Vundle.vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'majutsushi/tagbar'
-Plugin 'easymotion/vim-easymotion'
-Plugin 'bling/vim-airline'
-Plugin 'airblade/vim-gitgutter'
-Plugin 'scrooloose/nerdtree.git'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tpope/vim-fugitive.git'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'Xuyuanp/nerdtree-git-plugin'
-Plugin 'editorconfig/editorconfig-vim'
+call plug#begin('~/.vim/plugged')
+"common
+Plug 'Valloric/YouCompleteMe'
+Plug 'gmarik/Vundle.vim'
+Plug 'majutsushi/tagbar'
+Plug 'easymotion/vim-easymotion'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'airblade/vim-gitgutter'
+Plug 'scrooloose/nerdtree'
+Plug 'kien/ctrlp.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdcommenter'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'editorconfig/editorconfig-vim'
 "HTML
-Plugin 'othree/html5.vim.git'
-Plugin 'tpope/vim-haml.git'
-Plugin 'gregsexton/MatchTag.git'
-Plugin 'mattn/emmet-vim'
+Plug 'othree/html5.vim'
+Plug 'tpope/vim-haml'
+Plug 'gregsexton/MatchTag'
+Plug 'mattn/emmet-vim'
 "CSS/LESS
-Plugin 'hail2u/vim-css3-syntax.git'
-Plugin 'ap/vim-css-color.git'
-Plugin 'groenewege/vim-less.git'
-Plugin 'cakebaker/scss-syntax.vim'
+Plug 'hail2u/vim-css3-syntax'
+Plug 'ap/vim-css-color'
+Plug 'groenewege/vim-less'
+Plug 'cakebaker/scss-syntax.vim'
 "JavaScript
-Plugin 'jiangmiao/auto-pairs'
-Plugin 'maksimr/vim-jsbeautify'
-Plugin 'wizicer/vim-jison'
-Plugin 'jelera/vim-javascript-syntax'
+Plug 'jiangmiao/auto-pairs'
+Plug 'maksimr/vim-jsbeautify'
+Plug 'wizicer/vim-jison'
+Plug 'jelera/vim-javascript-syntax'
 "Color themes
-Bundle "altercation/vim-colors-solarized"
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tomasr/molokai'
+Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
+Plug 'tomasr/molokai'
 "Markdown
-Plugin 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown'
 "Go lang
-Plugin 'fatih/vim-go'
-Plugin 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'fatih/vim-go'
+Plug 'nsf/gocode', {'rtp': 'vim/'}
 "Jade
-Plugin 'digitaltoad/vim-jade'
-call vundle#end()
+Plug 'digitaltoad/vim-jade'
+call plug#end()
 
-"Settings
-set shell=/bin/sh
-set term=screen-256color
-set t_Co=256
-let g:rehash256 = 1
-set background=dark
-set cursorline
+" Settings
 colorscheme hybrid
 let mapleader=","
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
-hi Search guibg=peru guifg=wheat
-hi Search ctermfg=yellow ctermbg=blue
-
-" set the runtime path to include Vundle and initialize
-set guifont=Inconsolata\ for\ Powerline:h16
-set encoding=utf-8
-set fillchars+=stl:\ ,stlnc:\
-
-syntax enable
-filetype plugin on
-set laststatus=2
-
-"exclure some directories from the ctrlp search
-let g:ctrlp_custom_ignore = '\v[\/](node_modules|target|dist|bower_components)|(\.(swp|ico|git|svn))$'
-
-"Airline settings
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-"
-"Syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-
-" Better Completion
-set complete=.,w,b,u,t
-set completeopt=longest,menuone
-
-" Map ctrl-movement keys to window switching
-map <C-k> <C-w><Up>
-map <C-j> <C-w><Down>
-map <C-l> <C-w><Right>
-map <C-h> <C-w><Left>
-"
-"Emmet settings
-let g:user__install_global = 0
-autocmd FileType html,css EmmetInstall
-"
 set tabstop=2
 set shiftwidth=2
 set expandtab
 set smartindent
 set number
-set noswapfile
+set relativenumber
+
+set so=7 " set 7 lines to the cursors - when moving vertical
+set wildmenu " enhanced command line completion
+set hidden " current buffer can be put into background
+set showcmd " show incomplete commands
+set noshowmode " don't show which mode disabled for PowerLine
+set wildmode=list:longest " complete files like a shell
+set scrolloff=3 " lines of text around cursor
+set shell=$SHELL
+set cmdheight=1 " command bar height
+
+" faster redrawing
+set ttyfast
+
+set nocompatible " not compatible with vi
+set autoread " detect when a file is changed
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+" set a map leader for more key combos
+let mapleader = ','
+let g:mapleader = ','
 
 set noerrorbells                " No beeps
 set novisualbell
-set t_vb=
-autocmd! GUIEnter * set vb t_vb=
-set backspace=indent,eol,start  " Makes backspace key more powerful.
 set noswapfile                  " Don't use swapfile
 set nobackup                   " Don't create annoying backup files
 set splitright                  " Split vertical windows right to the current
 "windows
 set splitbelow                  " Split horizontal windows below to the
 "current windows
-set encoding=utf-8              " Set default encoding to UTF-8
-set autoread                    " Automatically reread changed files without
-"asking me anything
 set fileformats=unix,dos,mac    " Prefer Unix over Windows over OS 9 formats
 
 ""http://stackoverflow.com/questions/20186975/vim-mac-how-to-copy-to-clipboard-without-pbcopy
-set clipboard^=unnamed
-set clipboard^=unnamedplus"
+" works only for OS X
+let os=substitute(system('uname'), '\n', '', '')
+if os == 'Darwin' || os == 'Mac'
+  set clipboard^=unnamed
+  set clipboard^=unnamedplus"
+endif
 
-"persistent undo history
-"if has('persistent_undo')      "check if your vim version supports it
-  "set undofile                 "turn on the feature
-  "set undodir=$HOME/.vim/undo  "directory where the undo files will be stored
-"endif
-
-"new tab
-nnoremap <c-t>     :tabnew<CR>
-
+" Searching
+set ignorecase " case insensitive searching
+set smartcase " case-sensitive if expresson contains a capital letter
 set hlsearch
-set incsearch
-set guioptions-=T
-set guioptions-=r
+set incsearch " set incremental search, like modern browsers
+set nolazyredraw " don't redraw while executing macros
 
-" Warning: nightmare mode!
-inoremap <Left> <NOP>
-inoremap <Right> <NOP>
-noremap <Up> <NOP>
-noremap <Down> <NOP>
-noremap <Left> <NOP>
-noremap <Right> <NOP>
+set showmatch " show matching braces
+
+"Airline options
+let g:airline_powerline_fonts=1
+let g:airline_left_sep=''
+let g:airline_right_sep=''
+let g:airline_theme='bubblegum'
 
 "Open NERDTree with Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
@@ -151,6 +114,10 @@ map <C-n> :NERDTreeToggle<CR>
 set timeoutlen=1000
 "set ttimeout
 set ttimeoutlen=50
+
+"Emmet settings
+let g:user__install_global = 0
+autocmd FileType html,css EmmetInstall
 
 "Beautify js, html, css with ctrl-f
 map <c-f> :call JsBeautify()<cr>
@@ -162,33 +129,27 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
+" workaround for https://github.com/neovim/neovim/issues/2048
+ if has('nvim')
+     nmap <BS> <C-W>h
+ endif
 
-" ==================== YouCompleteMe ====================
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_min_num_of_chars_for_completion = 1
-let g:ycm_key_list_select_completion = ['<TAB>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<S-TAB>', '<Up>']
+" Map ctrl-movement keys to window switching
+map <silent> <C-h> :call WinMove('h')<cr>
+map <silent> <C-j> :call WinMove('j')<cr>
+map <silent> <C-k> :call WinMove('k')<cr>
+map <silent> <C-l> :call WinMove('l')<cr>
 
-" ==================== Vim-go ====================
-let g:go_fmt_fail_silently = 0
-let g:go_fmt_command = "goimports"
-let g:go_autodetect_gopath = 1
-
-let g:go_highlight_functions = 1
-let g:go_highlight_methods = 1
-let g:go_highlight_structs = 1
-let g:go_highlight_operators = 1
-let g:go_highlight_build_constraints = 1
-
-au FileType go nmap <Leader>s <Plug>(go-def-split)
-au FileType go nmap <Leader>v <Plug>(go-def-vertical)
-au FileType go nmap <Leader>in <Plug>(go-info)
-au FileType go nmap <Leader>ii <Plug>(go-implements)
-
-au FileType go nmap <leader>r  <Plug>(go-run)
-au FileType go nmap <leader>b  <Plug>(go-build)
-au FileType go nmap <leader>g  <Plug>(go-gbbuild)
-au FileType go nmap <leader>t  <Plug>(go-test-compile)
-au FileType go nmap <Leader>d <Plug>(go-doc)
-au FileType go nmap <Leader>f :GoImports<CR>
-"=======================================================
+" move to the window in the direction shown, or create a new window
+function! WinMove(key)
+    let t:curwin = winnr()
+    exec "wincmd ".a:key
+    if (t:curwin == winnr())
+        if (match(a:key,'[jk]'))
+            wincmd v
+        else
+            wincmd s
+        endif
+        exec "wincmd ".a:key
+    endif
+endfunction
