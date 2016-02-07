@@ -31,9 +31,7 @@ Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
 Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 "Color themes
-Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
-Plug 'tomasr/molokai'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Go lang
