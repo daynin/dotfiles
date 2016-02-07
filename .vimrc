@@ -13,32 +13,32 @@ Plug 'tpope/vim-fugitive'
 Plug 'scrooloose/nerdcommenter'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'editorconfig/editorconfig-vim'
-"HTML
-Plug 'othree/html5.vim'
-Plug 'tpope/vim-haml'
-Plug 'gregsexton/MatchTag'
-Plug 'mattn/emmet-vim'
-"CSS/LESS
-Plug 'hail2u/vim-css3-syntax'
-Plug 'ap/vim-css-color'
-Plug 'groenewege/vim-less'
-Plug 'cakebaker/scss-syntax.vim'
-"JavaScript
 Plug 'jiangmiao/auto-pairs'
-Plug 'maksimr/vim-jsbeautify'
-Plug 'wizicer/vim-jison'
-Plug 'jelera/vim-javascript-syntax'
+"HTML
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'tpope/vim-haml', { 'for': 'haml'}
+Plug 'gregsexton/MatchTag', { 'for': 'html'}
+Plug 'mattn/emmet-vim', { 'for': 'html'}
+"CSS/LESS
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
+Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
+"Jade
+Plug 'digitaltoad/vim-jade'
+"JavaScript
+Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
+Plug 'wizicer/vim-jison', { 'for': 'jison' }
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 "Color themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'tomasr/molokai'
 "Markdown
-Plug 'plasticboy/vim-markdown'
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Go lang
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode', {'rtp': 'vim/'}
-"Jade
-Plug 'digitaltoad/vim-jade'
 call plug#end()
 
 " Settings
