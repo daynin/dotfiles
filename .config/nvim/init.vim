@@ -37,6 +37,10 @@ Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode', {'rtp': 'vim/'}
+"Ruby
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'tpope/vim-bundler', { 'for': 'ruby' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
 call plug#end()
 
 " Settings
@@ -60,6 +64,8 @@ set scrolloff=3 " lines of text around cursor
 set shell=$SHELL
 set cmdheight=1 " command bar height
 
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
 " faster redrawing
 set ttyfast
 
@@ -68,6 +74,8 @@ set autoread " detect when a file is changed
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
+"find a word
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " set a map leader for more key combos
 let mapleader = ','
