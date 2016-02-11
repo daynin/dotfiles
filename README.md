@@ -1,8 +1,4 @@
 ##Dotfiles
-[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/git.png)]() 
-[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/macvim.png)]() 
-[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/python.svg)]() 
-[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/neovim.png)]() 
 ---
 To install this dotfiles run following:
 
