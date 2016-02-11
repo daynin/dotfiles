@@ -12,6 +12,15 @@ function brew_install () {
   fi
 }
 
+echo "${GREEN}"
+echo "______      _    __ _ _           "
+echo "|  _  \    | |  / _(_) |          "
+echo "| | | |___ | |_| |_ _| | ___  ___ "
+echo "| | | / _ \| __|  _| | |/ _ \/ __|"
+echo "| |/ / (_) | |_| | | | |  __/\__ \\"
+echo "|___/ \___/ \__|_| |_|_|\___||___/"
+echo "${NORMAl}\n\n"
+
 echo "${CYAN}Installation started...\n${NORMAL}"
 
 if ! type "$brew" > /dev/null 2> /dev/null; then
