@@ -1,6 +1,8 @@
 ##Dotfiles
-
-[![](https://s3.amazonaws.com/cloud.ohloh.net/attachments/78355/hg6qhdveqziyh3zlcpev_med.png)]() 
+[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/git.png)]() 
+[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/macvim.png)]() 
+[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/python.svg)]() 
+[![](https://raw.githubusercontent.com/daynin/dotfiles/master/logos/neovim.png)]() 
 ---
 To install this dotfiles run following:
 
