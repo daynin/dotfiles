@@ -21,25 +21,24 @@ brew install git
 echo "${GREEN}DONE!${NORMAL}"
 
 echo "${CYAN}Install vim plug...${NORMAL}"
-sudo rm -rf ~/.config/nvim
-sudo curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+mv ~/.config/nvim ~/.config/nvim.back
+curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo "${GREEN}DONE!${NORMAL}"
 
 echo "${CYAN}Create symlinks to .tmux.conf and init.vim...${NORMAL}"
-sudo rm -rf ~/.tmux.conf
-sudo ln -s ${SCRIPTPATH}/.tmux.conf ~/.tmux.conf
-sudo rm -rf ~/.config/nvim/init.vim
-sudo ln -s ${SCRIPTPATH}/init.vim ~/.config/nvim/init.vim
+mv ~/.tmux.conf ~/.tmux.conf.back
+ln -s ${SCRIPTPATH}/.tmux.conf ~/.tmux.conf
+ln -s ${SCRIPTPATH}/init.vim ~/.config/nvim/init.vim
 echo "${GREEN}DONE!${NORMAL}"
 
 echo "${CYAN}Install python library for neovim...${NORMAL}"
-sudo pip2 install neovim
+pip2 install neovim
 echo "${GREEN}DONE!${NORMAL}"
 
 echo "${CYAN}Install oh-my-zsh...${NORMAL}"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-sudo rm -rf ~/.zshrc
-sudo ln -s ${SCRIPTPATH}/.zshrc ~/.zshrc
+mv ~/.zshrc ~/.zshrc.back
+ln -s ${SCRIPTPATH}/.zshrc ~/.zshrc
 
 chsh -s $(which zsh)
 echo "${GREEN}DONE!${NORMAL}"
