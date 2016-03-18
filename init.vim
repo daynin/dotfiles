@@ -1,51 +1,61 @@
 call plug#begin('~/.vim/plugged')
 "common
 Plug 'Valloric/YouCompleteMe'
-Plug 'gmarik/Vundle.vim'
-Plug 'majutsushi/tagbar'
+Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
 Plug 'easymotion/vim-easymotion'
+Plug 'editorconfig/editorconfig-vim'
+Plug 'gmarik/Vundle.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'majutsushi/tagbar'
+Plug 'scrooloose/nerdcommenter'
+Plug 'scrooloose/nerdtree'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'airblade/vim-gitgutter'
-Plug 'scrooloose/nerdtree'
-Plug 'kien/ctrlp.vim'
-Plug 'tpope/vim-fugitive'
-Plug 'scrooloose/nerdcommenter'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'jiangmiao/auto-pairs'
+Plug 'vimwiki/vimwiki'
 "HTML
-Plug 'othree/html5.vim', { 'for': 'html' }
-Plug 'tpope/vim-haml', { 'for': 'haml'}
 Plug 'gregsexton/MatchTag', { 'for': 'html'}
 Plug 'mattn/emmet-vim', { 'for': 'html'}
+Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'tpope/vim-haml', { 'for': 'haml'}
 "CSS/LESS
-Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
-Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
+Plug 'groenewege/vim-less', { 'for': 'less' }
+Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 "Jade
 Plug 'digitaltoad/vim-jade'
 "JavaScript
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
-"Color themes
+"Themes
+Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'nsf/gocode', {'rtp': 'vim/'}
+Plug 'nsf/gocode',  { 'for': 'go' }
 "Ruby
-Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 call plug#end()
 
 " Settings
+set background=dark
 colorscheme hybrid
 let mapleader=","
+let g:vimwiki_list = [{'path': '$HOME/Dropbox/wiki'}]
+:nnoremap <Leader>t :VimwikiToggleListItem<cr>
+
+filetype plugin on
+syntax on
 
 set tabstop=2
 set shiftwidth=2
@@ -131,6 +141,7 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
 
+" nvim setup
 " workaround for https://github.com/neovim/neovim/issues/2048
  if has('nvim')
      nmap <BS> <C-W>h

@@ -47,6 +47,8 @@ fi
 brew_install curl
 brew_install zsh
 brew_install git
+
+cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf<Paste>
 echo "${GREEN}DONE!${NORMAL}"
 
 echo "${CYAN}Install vim plug...${NORMAL}"
@@ -75,14 +77,4 @@ echo "${GREEN}DONE!${NORMAL}"
 echo "${GREEN}COMPLETE!${NORMAL}"
 echo "\n\n${YELLOW}NOTE: ${NORMAL} You should install Neovim plugins (:PlugInstall). But before do it you should set up your git (set your email, username and so on) and compile YouCompleteMe. \nSEE: ${CYAN}https://github.com/Valloric/YouCompleteMe#mac-os-x-installation${NORMAL}\n OR: ${CYAN}sudo sh ~/.vim/plugged/YouCompleteMe/install.sh${NORMAL}"
 
-
-
-
-
-
-
-
-
-
-
-
+echo "\n\n${YELLOW}NODE: ${NORMAL} Also you should set up 'Droid Sans Mono for Powerline' font in your terminal emulator"
