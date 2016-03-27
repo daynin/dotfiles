@@ -22,7 +22,7 @@ After this script completed, you should manually set up your git for using githu
 :PlugInstall
 ```
 
-And compile YouComplteMe: https://github.com/Valloric/YouCompleteMe#mac-os-x-installation
+And compile YouComplteMe: https://github.com/Valloric/YouCompleteMe#installation
 
 That's all what you need to do to use this dotfiles.
 
