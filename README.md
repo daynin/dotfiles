@@ -1,6 +1,6 @@
 ##Dotfiles
 ---
-To install this dotfiles run following:
+To install these dotfiles you should run following:
 
 ```
 ./install.sh
@@ -16,7 +16,7 @@ It'll install on your computer:
 - zsh
 - git
 
-After this script completed, you should manually set up your git for using github.com. Then you should install Neovim plugins (just exec following):
+Then you should install Neovim plugins (just exec following):
 
 ```
 :PlugInstall
@@ -39,3 +39,27 @@ These are my tmux, vim, neovim, editorconfig and zsh configs.
 3. Active window
 4. Active pane
 5. Simple date/time info panel
+
+###Tmux hot keys
+
+There are only one thing you should know: you can use <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> to jump between panes
+
+###Vim hot keys
+
+First of all, you should know that my <kbd>Leader</kbd> key is <kbd>,</kbd>
+
+
+| Action        | Binding       | 
+| ------------- |:-------------:|
+| Toggle nerd tree | <kbd>Ctrl</kbd> + <kbd>n</kbd> |
+| Show Ctrl-p panel | <kbd>Ctrl</kbd> + <kbd>p</kbd> |
+| Switch buffer | <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> |
+| Format JS/HTML/CSS | <kbd>Ctrl</kbd> + <kbd>f</kbd> |
+| Find and replace word under the cursor | <kbd>Leader</kbd> + <kbd>s</kbd> |
+
+That's all. Remaining keys are default.
+
+###Terminal emulator settings
+
+**NOTE:** You have to set "Droid Sans Mono for Powerline Nerd Font Complete.otf" as a font by default in your terminal emulator.
+
