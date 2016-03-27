@@ -49,7 +49,7 @@ call plug#end()
 
 " Settings
 set background=dark
-colorscheme hybrid
+colorscheme gruvbox
 let mapleader=","
 let g:vimwiki_list = [{'path': '$HOME/Dropbox/wiki'}]
 :nnoremap <Leader>t :VimwikiToggleListItem<cr>
