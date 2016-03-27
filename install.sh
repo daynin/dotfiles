@@ -47,7 +47,11 @@ ln -s ${SCRIPTPATH}/init.vim ~/.config/nvim/init.vim
 printf "${GREEN}DONE!${NORMAL}\n"
 
 printf "${CYAN}Install python library for neovim...${NORMAL}\n"
-pip2 install neovim
+if [ "$(uname)" = 'Linux' ]; then
+  sudo pip2 install neovim
+elif [ "$(uname)" = 'Darwin' ]; then
+  pip2 install neovim
+fi
 printf "${GREEN}DONE!${NORMAL}\n"
 
 printf "${CYAN}Install oh-my-zsh...${NORMAL}\n"
