@@ -1,81 +1,63 @@
+#!/bin/bash
 GREEN='\033[0;32m'
 CYAN='\033[0;36m'
 NORMAL='\033[0m'
 YELLOW='\033[0;33m'
 SCRIPTPATH=`pwd -P`
 
-function brew_install () {
-  if ! type "$$1" > /dev/null 2> /dev/null; then
-    echo "${GREEN}$1 already installed!${NORMAL}"
-  else
-    brew install $1
-  fi
-}
-
-echo "${GREEN}"
+printf "${GREEN}"
 echo "______      _    __ _ _           "
 echo "|  _  \    | |  / _(_) |          "
 echo "| | | |___ | |_| |_ _| | ___  ___ "
 echo "| | | / _ \| __|  _| | |/ _ \/ __|"
 echo "| |/ / (_) | |_| | | | |  __/\__ \\"
 echo "|___/ \___/ \__|_| |_|_|\___||___/"
-echo "${NORMAl}\n\n"
+printf "${NORMAl}\n\n"
 
-echo "${CYAN}Installation started...\n${NORMAL}"
+printf "${CYAN}Installation started...\n${NORMAL}"
 
-if ! type "$brew" > /dev/null 2> /dev/null; then
-  echo "${GREEN}brew already installed!${NORMAL}"
-else
-  ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+if [ "$(uname)" = 'Linux' ]; then
+  source install/linux.sh
+elif [ "$(uname)" = 'Darwin' ]; then
+  source install/osx.sh
 fi
 
-echo "${CYAN}Brew updating...${NORMAL}"
-brew update
-echo "${GREEN}DONE!${NORMAL}"
-
-echo "${CYAN}Install apps from brew...${NORMAL}"
-brew_install python
-brew_install "macvim --override-system-vim"
-brew_install tmux
-
-if ! type "$nvim" > /dev/null 2> /dev/null; then
-  echo "${GREEN}neovim already installed!${NORMAL}"
-else
-  brew install neovim/neovim/neovim
+if [ ! -d "~/.config" ]; then
+  mkdir ~/.config
+  mkdir ~/.config/nvim
 fi
 
-brew_install curl
-brew_install zsh
-brew_install git
-
-cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf
-
-echo "${GREEN}DONE!${NORMAL}"
-
-echo "${CYAN}Install vim plug...${NORMAL}"
+printf "${CYAN}Install vim plug...${NORMAL}\n"
 mv --backup=numbered ~/.config/nvim ~/.config/nvim.back
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-echo "${GREEN}DONE!${NORMAL}"
+printf "${GREEN}DONE!${NORMAL}\n"
 
-echo "${CYAN}Create symlinks to .tmux.conf and init.vim...${NORMAL}"
+printf "${CYAN}Create symlinks to .tmux.conf and init.vim...${NORMAL}\n"
 mv ~/.tmux.conf ~/.tmux.conf.back
-ln -s ${SCRIPTPATH}/.tmux.conf ~/.tmux.conf
+
+if [ "$(uname)" = 'Linux' ]; then
+  ln -s ${SCRIPTPATH}/.tmux-linux.conf ~/.tmux.conf
+elif [ "$(uname)" = 'Darwin' ]; then
+  ln -s ${SCRIPTPATH}/.tmux-osx.conf ~/.tmux.conf
+fi
+
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.back
 ln -s ${SCRIPTPATH}/init.vim ~/.config/nvim/init.vim
-echo "${GREEN}DONE!${NORMAL}"
+printf "${GREEN}DONE!${NORMAL}\n"
 
-echo "${CYAN}Install python library for neovim...${NORMAL}"
+printf "${CYAN}Install python library for neovim...${NORMAL}\n"
 pip2 install neovim
-echo "${GREEN}DONE!${NORMAL}"
+printf "${GREEN}DONE!${NORMAL}\n"
 
-echo "${CYAN}Install oh-my-zsh...${NORMAL}"
+printf "${CYAN}Install oh-my-zsh...${NORMAL}\n"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 mv ~/.zshrc ~/.zshrc.back
 ln -s ${SCRIPTPATH}/.zshrc ~/.zshrc
 
 chsh -s $(which zsh)
-echo "${GREEN}DONE!${NORMAL}"
-echo "${GREEN}COMPLETE!${NORMAL}"
-echo "\n\n${YELLOW}NOTE: ${NORMAL} You should install Neovim plugins (:PlugInstall). But before do it you should set up your git (set your email, username and so on) and compile YouCompleteMe. \nSEE: ${CYAN}https://github.com/Valloric/YouCompleteMe#mac-os-x-installation${NORMAL}\n OR: ${CYAN}sudo sh ~/.vim/plugged/YouCompleteMe/install.sh${NORMAL}"
+printf "${GREEN}DONE!${NORMAL}\n"
+printf "${GREEN}COMPLETE!${NORMAL}\n"
+printf "\n\n${YELLOW}NOTE: ${NORMAL} You should install Neovim plugins (:PlugInstall). But before do it you should set up your git (set your email, username and so on) and compile YouCompleteMe. \nSEE: ${CYAN}https://github.com/Valloric/YouCompleteMe#mac-os-x-installation${NORMAL}\n OR: ${CYAN}sudo sh ~/.vim/plugged/YouCompleteMe/install.sh${NORMAL}"
 
-echo "\n\n${YELLOW}NODE: ${NORMAL} Also you should set up 'Droid Sans Mono for Powerline' font in your terminal emulator"
+printf "\n\n${YELLOW}NODE: ${NORMAL} Also you should set up 'Droid Sans Mono for Powerline' font in your terminal emulator"
