@@ -9,12 +9,11 @@ To install these dotfiles you should run following:
 It'll install on your computer:
 
 - python
-- macvim
+- macvim (if you use os x)
 - neovim (as default vim)
 - tmux
 - curl
 - zsh
-- git
 
 Then you should install Neovim plugins (just exec following):
 
