@@ -28,9 +28,10 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 "Jade
 Plug 'digitaltoad/vim-jade'
 "JavaScript
-Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 "Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
@@ -140,6 +141,9 @@ autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
 " for css or scss
 autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
 autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
+
+"react settings
+let g:jsx_ext_required = 0
 
 " nvim setup
 " workaround for https://github.com/neovim/neovim/issues/2048
