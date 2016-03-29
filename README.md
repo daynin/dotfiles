@@ -28,14 +28,14 @@ And compile YouComplteMe: https://github.com/Valloric/YouCompleteMe#installation
 
 That's all what you need to do to use this dotfiles.
 
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/dotfiles1.png)
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/dotfiles3.png)
+![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles1.png)
+![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles3.png)
 
 These are my tmux, vim, neovim, editorconfig and zsh configs.
 
 ###Tmux
 
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/dotfiles2.png)
+![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles2.png)
 
 1. Session name
 2. Inactive window
@@ -68,4 +68,4 @@ That's all. Remaining keys are default.
 
 Like that:
 
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/terminal-settings.png)
+![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/terminal-settings.png)
