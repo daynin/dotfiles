@@ -6,7 +6,7 @@ printf "${GREEN}DONE!${NORMAL}\n"
 
 printf "${CYAN}Install apps from brew...${NORMAL}\n"
 sudo apt-get install python -q
-sudo apt-get install gvim -q
+sudo apt-get install vim -q
 sudo apt-get install tmux -q
 
 sudo apt-get install software-properties-common -q

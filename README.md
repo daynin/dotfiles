@@ -9,11 +9,22 @@ To install these dotfiles you should run following:
 ./install.sh
 ```
 
+to install all dotfiles with Neovim as default vim.
+
+OR:
+
+```
+./install.sh --classic-vim
+```
+
+If you want to set up classic vim (7.*) instead of Neovim.
+
 It'll install on your computer:
 
 - python
 - macvim (if you use os x)
-- neovim (as default vim)
+- vim
+- neovim
 - tmux
 - curl
 - zsh

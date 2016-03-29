@@ -30,6 +30,9 @@ fi
 
 printf "${CYAN}Install vim plug...${NORMAL}\n"
 mv --backup=numbered ~/.config/nvim ~/.config/nvim.back
+if [ "$1" = '--classic-vim' ]; then
+  curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+fi
 curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 printf "${GREEN}DONE!${NORMAL}\n"
 
@@ -43,7 +46,12 @@ elif [ "$(uname)" = 'Darwin' ]; then
 fi
 
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.back
+mv ~/.vimrc ~/.vimrc.back
+
 ln -s ${SCRIPTPATH}/init.vim ~/.config/nvim/init.vim
+if [ "$1" = '--classic-vim' ]; then
+  ln -s ${SCRIPTPATH}/init.vim ~/.vimrc
+fi
 printf "${GREEN}DONE!${NORMAL}\n"
 
 printf "${CYAN}Install python library for neovim...${NORMAL}\n"
@@ -58,6 +66,10 @@ printf "${CYAN}Install oh-my-zsh...${NORMAL}\n"
 sh -c "$(curl -fsSL https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
 mv ~/.zshrc ~/.zshrc.back
 ln -s ${SCRIPTPATH}/.zshrc ~/.zshrc
+
+if [ ! "$1" = '--classic-vim' ]; then
+  echo "alias vim='nvim'" >> ~/.zshrc
+fi
 
 chsh -s $(which zsh)
 printf "${GREEN}DONE!${NORMAL}\n"
