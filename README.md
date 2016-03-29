@@ -29,6 +29,7 @@ And compile YouComplteMe: https://github.com/Valloric/YouCompleteMe#installation
 That's all what you need to do to use this dotfiles.
 
 ![](https://raw.githubusercontent.com/daynin/dotfiles/master/dotfiles1.png)
+![](https://raw.githubusercontent.com/daynin/dotfiles/master/dotfiles3.png)
 
 These are my tmux, vim, neovim, editorconfig and zsh configs.
 
