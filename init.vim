@@ -51,33 +51,23 @@ call plug#end()
 " Settings
 set background=dark
 colorscheme gruvbox
-let mapleader=","
 let g:vimwiki_list = [{'path': '$HOME/Dropbox/wiki'}]
-:nnoremap <Leader>t :VimwikiToggleListItem<cr>
-
-filetype plugin on
-syntax on
 
 set tabstop=2
 set shiftwidth=2
 set expandtab
-set smartindent
+set autoindent
 set number
 set relativenumber
 
 set wildmenu " enhanced command line completion
 set hidden " current buffer can be put into background
 set showcmd " show incomplete commands
-set shell=$SHELL
 set cmdheight=1 " command bar height
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
-" faster redrawing
-set ttyfast
-
 set nocompatible " not compatible with vi
-set autoread " detect when a file is changed
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
@@ -85,7 +75,6 @@ set backspace=indent,eol,start
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " set a map leader for more key combos
-let mapleader = ','
 let g:mapleader = ','
 
 set noerrorbells                " No beeps
@@ -111,7 +100,6 @@ set ignorecase " case insensitive searching
 set smartcase " case-sensitive if expresson contains a capital letter
 set hlsearch
 set incsearch " set incremental search, like modern browsers
-set nolazyredraw " don't redraw while executing macros
 
 set showmatch " show matching braces
 
