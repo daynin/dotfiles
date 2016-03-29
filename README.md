@@ -1,5 +1,8 @@
 ##Dotfiles
 ---
+![](https://img.shields.io/badge/works%20on-OS%20X-D376B3.svg)
+![](https://img.shields.io/badge/works%20on-Ubuntu-DD4814.svg)
+
 To install these dotfiles you should run following:
 
 ```
