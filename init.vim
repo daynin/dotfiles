@@ -72,10 +72,10 @@ set nocompatible " not compatible with vi
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
 "find a word
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 " set a map leader for more key combos
 let g:mapleader = ','
+:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 
 set noerrorbells                " No beeps
 set novisualbell
