@@ -16,9 +16,9 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'vimwiki/vimwiki'
 "HTML
-Plug 'gregsexton/MatchTag', { 'for': 'html'}
-Plug 'mattn/emmet-vim', { 'for': 'html'}
-Plug 'othree/html5.vim', { 'for': 'html' }
+Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
+Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
 Plug 'tpope/vim-haml', { 'for': 'haml'}
 "CSS/LESS
 Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
