@@ -55,6 +55,8 @@ Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
 Plug 'wting/rust.vim', { 'for': 'rust' }
 "C / C++
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
+"PHP
+Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 "Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
