@@ -20,6 +20,7 @@ printf "${CYAN}Install apps from brew...${NORMAL}\n"
 brew_install python
 brew_install "macvim --override-system-vim"
 brew_install tmux
+brew_install ag
 
 if ! type "$nvim" > /dev/null 2> /dev/null; then
   printf "${GREEN}neovim already installed!${NORMAL}\n"

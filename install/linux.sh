@@ -17,6 +17,7 @@ sudo apt-get -qqy install python-dev
 sudo apt-get -qqy install python-pip
 sudo apt-get -qqy install python3-dev
 sudo apt-get -qqy install python3-pip
+sudo apt-get -qqy install silversearcher-ag
 
 sudo apt-get -qqy install curl
 sudo apt-get -qqy install zsh
