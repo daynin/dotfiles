@@ -14,7 +14,6 @@ Plug 'scrooloose/nerdtree'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'vimwiki/vimwiki'
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
@@ -32,13 +31,6 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
-"Themes
-Plug 'altercation/vim-colors-solarized'
-Plug 'flazz/vim-colorschemes'
-Plug 'morhetz/gruvbox'
-Plug 'ryanoasis/vim-devicons'
-"Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
@@ -49,12 +41,31 @@ Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 "Python
 Plug 'klen/python-mode', { 'for': 'python' }
 Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
+"CoffeScript
+Plug 'kchmck/vim-coffee-script', { 'for': 'coffescript' }
+"TypeScript
+Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
+"Clojure and ClojureScript
+Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
+Plug 'guns/vim-clojure-static', { 'for': ['clojure', 'clojurescript'] }
+Plug 'guns/vim-clojure-highlight', { 'for': ['clojure', 'clojurescript'] }
+Plug 'vim-scripts/paredit.vim', { 'for': ['clojure', 'clojurescript'] }
+"Rust
+Plug 'wting/rust.vim', { 'for': 'rust' }
+"C / C++
+Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
+"Themes
+Plug 'altercation/vim-colors-solarized'
+Plug 'flazz/vim-colorschemes'
+Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
+"Markdown
+Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 call plug#end()
 
 " Settings
 set background=dark
 colorscheme gruvbox
-let g:vimwiki_list = [{'path': '$HOME/Dropbox/wiki'}]
 
 set tabstop=2
 set shiftwidth=2
