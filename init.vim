@@ -47,8 +47,8 @@ Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 "Python
-Plug 'klen/python-mode'
-Plug 'mitsuhiko/vim-python-combined'
+Plug 'klen/python-mode', { 'for': 'python' }
+Plug 'mitsuhiko/vim-python-combined', { 'for': 'python' }
 call plug#end()
 
 " Settings
