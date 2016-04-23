@@ -57,6 +57,8 @@ Plug 'wting/rust.vim', { 'for': 'rust' }
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
 "PHP
 Plug 'StanAngeloff/php.vim', { 'for': 'php' }
+"Haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 "Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
@@ -186,3 +188,12 @@ let g:pymode_virtualenv = 1
 let g:pymode_lint = 1
 let g:pymode_lint_checker = "pyflakes,pep8"
 let g:pymode_lint_ignore="E501,W601,C0110"
+
+"Haskell settings
+let g:haskell_enable_quantification = 1
+let g:haskell_enable_recursivedo = 1
+let g:haskell_enable_arrowsyntax = 1
+let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_enable_typeroles = 1
+let g:haskell_enable_static_pointers = 1
+
