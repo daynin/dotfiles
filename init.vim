@@ -28,7 +28,8 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 "Jade
 Plug 'digitaltoad/vim-jade'
 "JavaScript
-Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+"Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
@@ -119,6 +120,7 @@ set ttimeoutlen=50
 "Emmet settings
 let g:user__install_global = 0
 autocmd FileType html,css EmmetInstall
+au BufRead,BufNewFile *.tl setfiletype lisp
 
 "Beautify js, html, css with ctrl-f
 map <c-f> :call JsBeautify()<cr>

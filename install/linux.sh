@@ -8,6 +8,7 @@ printf "${CYAN}Install apps from apt-get...${NORMAL}\n"
 sudo apt-get -qqy install python
 sudo apt-get -qqy install vim
 sudo apt-get -qqy install tmux
+sudo apt-get -qqy install cmake
 
 sudo apt-get -qqy install software-properties-common
 sudo apt-get -qqy install python-software-properties
