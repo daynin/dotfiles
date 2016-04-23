@@ -28,7 +28,6 @@ Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 "Jade
 Plug 'digitaltoad/vim-jade'
 "JavaScript
-"Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
@@ -47,6 +46,9 @@ Plug 'nsf/gocode',  { 'for': 'go' }
 Plug 'tpope/vim-bundler', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+"Python
+Plug 'klen/python-mode'
+Plug 'mitsuhiko/vim-python-combined'
 call plug#end()
 
 " Settings
@@ -160,3 +162,13 @@ function! WinMove(key)
         exec "wincmd ".a:key
     endif
 endfunction
+
+"Python settings
+let g:pymode_syntax = 1
+let g:pymode_syntax_all = 1
+let g:pymode_syntax_indent_errors = g:pymode_syntax_all
+let g:pymode_syntax_space_errors = g:pymode_syntax_all
+let g:pymode_virtualenv = 1
+let g:pymode_lint = 1
+let g:pymode_lint_checker = "pyflakes,pep8"
+let g:pymode_lint_ignore="E501,W601,C0110"
