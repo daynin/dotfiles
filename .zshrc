@@ -84,5 +84,3 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias p="cd ~/Documents/projects"
-alias vim='nvim'
-alias vim='nvim'
