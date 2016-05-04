@@ -65,7 +65,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'zenorocha/dracula-theme'
 Plug 'ryanoasis/vim-devicons'
-Plug 'crusoexia/vim-monokai'
+Plug 'sickill/vim-monokai'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 call plug#end()
@@ -73,6 +73,7 @@ call plug#end()
 " Settings
 set background=dark
 colorscheme gruvbox
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
 
 set tabstop=2
 set shiftwidth=2
