@@ -80,11 +80,13 @@ set shiftwidth=2
 set expandtab
 set autoindent
 set number
-set relativenumber
+set cursorline
+
+set nocursorcolumn
+syntax sync minlines=256
 
 set wildmenu " enhanced command line completion
 set hidden " current buffer can be put into background
-set showcmd " show incomplete commands
 set cmdheight=1 " command bar height
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
