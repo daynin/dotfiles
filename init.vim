@@ -80,8 +80,8 @@ set shiftwidth=2
 set expandtab
 set autoindent
 set number
-set cursorline
 
+set nocursorline
 set nocursorcolumn
 syntax sync minlines=256
 
