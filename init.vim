@@ -68,6 +68,8 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'sickill/vim-monokai'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+"TOML
+Plug 'cespare/vim-toml', { 'for': 'toml' }
 call plug#end()
 
 " Settings
