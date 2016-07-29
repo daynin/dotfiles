@@ -62,7 +62,6 @@ Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
-Plug 'zenorocha/dracula-theme'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sickill/vim-monokai'
 "Markdown
