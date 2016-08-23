@@ -20,15 +20,19 @@ Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
 Plug 'tpope/vim-haml', { 'for': 'haml'}
-"CSS/LESS
-Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less'] }
+"CSS/LESS/Stylus/SCSS
+Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus'] }
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 Plug 'groenewege/vim-less', { 'for': 'less' }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
+Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 "Jade
-Plug 'digitaltoad/vim-jade', { 'for': 'jade' }
+Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 "JavaScript
+Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
+Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
 "Go lang
@@ -64,6 +68,7 @@ Plug 'flazz/vim-colorschemes'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sickill/vim-monokai'
+Plug 'dracula/vim'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "TOML
