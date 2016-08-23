@@ -29,7 +29,6 @@ Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 "Jade
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 "JavaScript
-Plug 'isRuslan/vim-es6', { 'for': 'javascript' }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
@@ -69,6 +68,7 @@ Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'sickill/vim-monokai'
 Plug 'dracula/vim'
+Plug 'mhartington/oceanic-next'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "TOML
@@ -76,8 +76,11 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 call plug#end()
 
 " Settings
-set background=dark
+
+syntax enable
+set t_Co=256
 colorscheme gruvbox
+set background=dark
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
 
 set tabstop=2
