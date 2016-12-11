@@ -1,6 +1,7 @@
 call plug#begin('~/.vim/plugged')
 "common
-Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+"Plug 'Valloric/YouCompleteMe', { 'do': './install.sh' }
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'airblade/vim-gitgutter'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -16,6 +17,8 @@ Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'thinca/vim-quickrun'
 Plug 'neomake/neomake'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'cohama/agit.vim'
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
@@ -30,13 +33,13 @@ Plug 'wavded/vim-stylus', { 'for': 'stylus' }
 "Jade
 Plug 'digitaltoad/vim-jade', { 'for': ['jade', 'pug'] }
 "JavaScript
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'jelera/vim-javascript-syntax', { 'for': 'javascript' }
 Plug 'gavocanov/vim-js-indent', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
-"TypeScript
-Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
@@ -72,6 +75,9 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'ryanoasis/vim-devicons'
 Plug 'joshdick/onedark.vim'
+Plug 'jacoborus/tender.vim'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'lifepillar/vim-solarized8'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "TOML
@@ -79,22 +85,9 @@ Plug 'cespare/vim-toml', { 'for': 'toml' }
 call plug#end()
 
 " Settings
-
+set autoread
 syntax enable
 set t_Co=256
-
-if (empty($TMUX))
-  if (has("nvim"))
-    "For Neovim 0.1.3 and 0.1.4 < https://github.com/neovim/neovim/pull/2198 >
-    let $NVIM_TUI_ENABLE_TRUE_COLOR=1
-  endif
-  "For Neovim > 0.1.5 and Vim > patch 7.4.1799 < https://github.com/vim/vim/commit/61be73bb0f965a895bfb064ea3e55476ac175162 >
-  "Based on Vim patch 7.4.1770 (`guicolors` option) < https://github.com/vim/vim/commit/8a633e3427b47286869aa4b96f2bfc1fe65b25cd >
-  " < https://github.com/neovim/neovim/wiki/Following-HEAD#20160511 >
-  if (has("termguicolors"))
-    set termguicolors
-  endif
-endif
 
 colorscheme gruvbox
 set background=dark
@@ -126,6 +119,11 @@ set backspace=indent,eol,start
 " set a map leader for more key combos
 let g:mapleader = ','
 :nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
+inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
 
 set noerrorbells                " No beeps
 set novisualbell
@@ -191,29 +189,9 @@ let g:jsx_ext_required = 0
 
 " nvim setup
 " workaround for https://github.com/neovim/neovim/issues/2048
- if has('nvim')
-     nmap <BS> <C-W>h
+if has('nvim')
+  nmap <BS> <C-W>h
  endif
-
-" Map ctrl-movement keys to window switching
-map <silent> <C-h> :call WinMove('h')<cr>
-map <silent> <C-j> :call WinMove('j')<cr>
-map <silent> <C-k> :call WinMove('k')<cr>
-map <silent> <C-l> :call WinMove('l')<cr>
-
-" move to the window in the direction shown, or create a new window
-function! WinMove(key)
-    let t:curwin = winnr()
-    exec "wincmd ".a:key
-    if (t:curwin == winnr())
-        if (match(a:key,'[jk]'))
-            wincmd v
-        else
-            wincmd s
-        endif
-        exec "wincmd ".a:key
-    endif
-endfunction
 
 "Python settings
 let g:pymode_syntax = 1

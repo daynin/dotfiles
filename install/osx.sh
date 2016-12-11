@@ -18,9 +18,12 @@ printf "${GREEN}DONE!${NORMAL}\n"
 
 printf "${CYAN}Install apps from brew...${NORMAL}\n"
 brew_install python
+brew_install python3
 brew_install "macvim --override-system-vim"
 brew_install tmux
 brew_install ag
+# for fixing this bug https://github.com/tmux/tmux/issues/543
+brew_install reattach-to-user-namespace
 
 if ! type "$nvim" > /dev/null 2> /dev/null; then
   printf "${GREEN}neovim already installed!${NORMAL}\n"
@@ -31,6 +34,7 @@ fi
 brew_install curl
 brew_install zsh
 brew_install git-extras
+pip3 install --upgrade neovim
 
 cd ~/Library/Fonts && curl -fLo "Droid Sans Mono for Powerline Nerd Font Complete.otf" https://raw.githubusercontent.com/ryanoasis/nerd-fonts/master/patched-fonts/DroidSansMono/complete/Droid%20Sans%20Mono%20for%20Powerline%20Nerd%20Font%20Complete.otf
 
