@@ -1,0 +1,5 @@
+- name: Install git
+  homebrew: name=git
+
+- name: Install Git Extras
+  homebrew: name=git-extras

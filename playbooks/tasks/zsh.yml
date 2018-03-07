@@ -1,0 +1,20 @@
+- name: Install zsh
+  homebrew: name=zsh
+
+- name: Install oh-my-zsh
+  git:
+    repo: git@github.com:robbyrussell/oh-my-zsh.git
+    dest: ~/.oh-my-zsh
+
+- name: Link .zshrc
+  file:
+    src: "{{ playbook_dir }}/../configs/.zshrc"
+    dest: ~/.zshrc
+    state: link
+    force: true
+
+- name: Make zsh the default system shell
+  become: true
+  user:
+    name: "{{ ansible_user_id }}"
+    shell: zsh

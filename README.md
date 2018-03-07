@@ -6,24 +6,12 @@
 To install these dotfiles you should run the following command:
 
 ```
-./install.sh
+make install-ansible && make install
 ```
-
-to install all dotfiles with Neovim as a default vim.
-
-OR:
-
-```
-./install.sh --classic-vim
-```
-
-If you want to set up classic vim (7.*) instead of Neovim.
 
 It'll install on your computer:
 
 - python
-- macvim (if you use os x)
-- vim
 - neovim
 - tmux
 - curl

@@ -5,7 +5,7 @@ export ZSH=~/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="theunraveler"
+ZSH_THEME="robbyrussell"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -88,3 +88,4 @@ alias p="cd ~/Documents/projects"
 ~/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh
 export CLICOLOR=1
 export TERM=xterm-256color
+alias vim='nvim'

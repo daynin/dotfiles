@@ -1,0 +1,13 @@
+- name: Install tmux
+  homebrew: name=tmux
+
+# for fixing this bug https://github.com/tmux/tmux/issues/543
+- name: Install reattach-to-user-namespace
+  homebrew: name=reattach-to-user-namespace
+
+- name: Create a symlink for the tmux config
+  file:
+    src: "{{ playbook_dir }}/../configs/.tmux-osx.conf"
+    path: ~/.tmux.conf
+    state: link
+    force: true
