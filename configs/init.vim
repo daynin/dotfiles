@@ -19,6 +19,7 @@ Plug 'thinca/vim-quickrun'
 Plug 'neomake/neomake'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'cohama/agit.vim'
+Plug 'Shougo/vimproc.vim', {'do' : 'make'}
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
@@ -40,6 +41,7 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 Plug 'othree/es.next.syntax.vim', { 'for': 'javascript' }
 Plug 'maksimr/vim-jsbeautify', { 'for': 'javascript' }
 Plug 'wizicer/vim-jison', { 'for': 'jison' }
+Plug 'posva/vim-vue', { 'for': ['javascript', 'typescript'] }
 "Go lang
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
@@ -55,6 +57,8 @@ Plug 'kchmck/vim-coffee-script', { 'for': 'coffescript' }
 "TypeScript
 Plug 'leafgarland/typescript-vim', { 'for': 'typescript' }
 Plug 'clausreinke/typescript-tools.vim', { 'do': 'npm install', 'for': 'typescript' }
+Plug 'Quramy/tsuquyomi', { 'for': 'typescript'}
+Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
 "Clojure and ClojureScript
 Plug 'tpope/vim-fireplace', { 'for': ['clojure', 'clojurescript'] }
 Plug 'guns/vim-clojure-static', { 'for': ['clojure', 'clojurescript'] }
@@ -70,6 +74,10 @@ Plug 'StanAngeloff/php.vim', { 'for': 'php' }
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 "Elm
 Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+"CPP
+Plug 'zchee/deoplete-clang', { 'for': ['cpp', 'cc', 'c'] }
+Plug 'tweekmonster/deoplete-clang2'
+Plug 'justmao945/vim-clang'
 "Themes
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
@@ -78,6 +86,7 @@ Plug 'joshdick/onedark.vim'
 Plug 'jacoborus/tender.vim'
 Plug 'NLKNguyen/papercolor-theme'
 Plug 'lifepillar/vim-solarized8'
+Plug 'rakr/vim-one'
 "Markdown
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "TOML
@@ -94,8 +103,8 @@ set background=dark
 
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
 
-set tabstop=2
-set shiftwidth=2
+set tabstop=4
+set shiftwidth=4
 set expandtab
 set autoindent
 set number
@@ -118,7 +127,8 @@ set backspace=indent,eol,start
 
 " set a map leader for more key combos
 let g:mapleader = ','
-:nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
+nnoremap <C-f> :Ag -Q "
 
 " Use deoplete.
 let g:deoplete#enable_at_startup = 1
@@ -174,16 +184,6 @@ let g:user__install_global = 0
 autocmd FileType html,css EmmetInstall
 au BufRead,BufNewFile *.tl setfiletype lisp
 
-"Beautify js, html, css with ctrl-f
-map <c-f> :call JsBeautify()<cr>
-" or
-autocmd FileType javascript noremap <buffer>  <c-f> :call JsBeautify()<cr>
-" for html
-autocmd FileType html noremap <buffer> <c-f> :call HtmlBeautify()<cr>
-" for css or scss
-autocmd FileType css noremap <buffer> <c-f> :call CSSBeautify()<cr>
-autocmd FileType scss noremap <buffer> <c-f> :call CSSBeautify()<cr>
-
 "react settings
 let g:jsx_ext_required = 0
 
@@ -227,3 +227,7 @@ au FileType go nmap <leader>c <Plug>(go-coverage)
 au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-info)
+"TypeScript
+au FileType typescript nmap <leader>g :TsuDefinition<cr>:TsuDefinition<cr>
+au FileType typescript nmap <leader>b :TsuGoBack<cr>
+let g:tsuquyomi_disable_quickfix = 1
