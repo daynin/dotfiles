@@ -1,4 +1,4 @@
-##Dotfiles
+## Dotfiles
 ---
 ![](https://img.shields.io/badge/works%20on-OS%20X-D376B3.svg)
 ![](https://img.shields.io/badge/works%20on-Ubuntu-DD4814.svg)
@@ -32,7 +32,7 @@ That's all what you need to do to use these dotfiles.
 
 These are my tmux, vim, neovim, editorconfig and zsh configs.
 
-###Tmux
+### Tmux
 
 ![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles2.png)
 
@@ -42,11 +42,11 @@ These are my tmux, vim, neovim, editorconfig and zsh configs.
 4. Active pane
 5. Simple date/time info panel
 
-###Tmux hot keys
+### Tmux hot keys
 
 There are only one thing you should know: you can use <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> to jump between panes
 
-###Vim hot keys
+### Vim hot keys
 
 First of all, you should know that my <kbd>Leader</kbd> key is <kbd>,</kbd>
 
@@ -61,7 +61,7 @@ First of all, you should know that my <kbd>Leader</kbd> key is <kbd>,</kbd>
 
 That's all. Remaining keys are default.
 
-###Terminal emulator settings
+### Terminal emulator settings
 
 **NOTE:** You have to set "Droid Sans Mono for Powerline Nerd Font Complete.otf" as a font by default in your terminal emulator.
 
