@@ -1,7 +1,6 @@
 ## Dotfiles
 ---
 ![](https://img.shields.io/badge/works%20on-OS%20X-D376B3.svg)
-![](https://img.shields.io/badge/works%20on-Ubuntu-DD4814.svg)
 
 To install these dotfiles you should run the following command:
 
@@ -28,7 +27,6 @@ And compile YouComplteMe: https://github.com/Valloric/YouCompleteMe#installation
 That's all what you need to do to use these dotfiles.
 
 ![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles1.png)
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles3.png)
 
 These are my tmux, vim, neovim, editorconfig and zsh configs.
 

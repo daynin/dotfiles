@@ -89,3 +89,7 @@ alias p="cd ~/Documents/projects"
 export CLICOLOR=1
 export TERM=xterm-256color
 alias vim='nvim'
+
+export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+source $HOME/.cargo/env
+

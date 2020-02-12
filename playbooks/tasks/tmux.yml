@@ -7,7 +7,7 @@
 
 - name: Create a symlink for the tmux config
   file:
-    src: "{{ playbook_dir }}/../configs/.tmux-osx.conf"
+    src: "{{ playbook_dir }}/../configs/.tmux.conf"
     path: ~/.tmux.conf
     state: link
     force: true
