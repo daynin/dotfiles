@@ -54,7 +54,6 @@ First of all, you should know that my <kbd>Leader</kbd> key is <kbd>,</kbd>
 | Toggle nerd tree | <kbd>Ctrl</kbd> + <kbd>n</kbd> |
 | Show Ctrl-p panel | <kbd>Ctrl</kbd> + <kbd>p</kbd> |
 | Switch buffer | <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> |
-| Format JS/HTML/CSS | <kbd>Ctrl</kbd> + <kbd>f</kbd> |
 | Find and replace word under the cursor | <kbd>Leader</kbd> + <kbd>s</kbd> |
 
 That's all. Remaining keys are default.
