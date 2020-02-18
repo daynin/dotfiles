@@ -15,6 +15,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'thinca/vim-quickrun'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'rking/ag.vim', { 'on': 'Ag' }
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
@@ -50,6 +51,9 @@ Plug 'lifepillar/vim-solarized8'
 Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
 "TOML
 Plug 'cespare/vim-toml', { 'for': 'toml' }
+"Nim
+Plug 'alaviss/nim.nvim', { 'for': 'nim' }
+
 call plug#end()
 
 " Settings
@@ -57,7 +61,7 @@ set autoread
 syntax enable
 set t_Co=256
 
-colorscheme gruvbox 
+colorscheme gruvbox
 set background=dark
 
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14

@@ -85,7 +85,6 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias p="cd ~/Documents/projects"
 
-~/.vim/plugged/gruvbox/gruvbox_256palette_osx.sh
 export CLICOLOR=1
 export TERM=xterm-256color
 alias vim='nvim'
