@@ -9,3 +9,6 @@
 
 - name: Install curl
   homebrew: name=curl
+
+- name: Install neomutt
+  homebrew: name=neomutt

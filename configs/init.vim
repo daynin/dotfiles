@@ -10,12 +10,12 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'thinca/vim-quickrun'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
+Plug 'janko/vim-test'
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
@@ -33,9 +33,8 @@ Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'nsf/gocode',  { 'for': 'go' }
 "TypeScript
 Plug 'HerringtonDarkholme/yats.vim', { 'for': 'typescript' }
-Plug 'ianks/vim-tsx', { 'for': 'typescript' }
 "Rust
-Plug 'wting/rust.vim', { 'for': 'rust' }
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 "C / C++
 Plug 'Rip-Rip/clang_complete', { 'for': ['c', 'cpp'] }
 Plug 'justmao945/vim-clang'
@@ -76,6 +75,10 @@ set nocursorline
 set nocursorcolumn
 syntax sync minlines=256
 
+let g:lightline = {
+\ 'colorscheme': 'jellybeans',
+\ }
+
 set wildmenu " enhanced command line completion
 set hidden " current buffer can be put into background
 set cmdheight=1 " command bar height
@@ -94,14 +97,29 @@ nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 nnoremap <C-f> :Ag -Q "
 nnoremap <Leader>gt :FlowJumpToDef<CR>
 
-" Use deoplete.
-let g:deoplete#enable_at_startup = 1
-inoremap <expr><tab> pumvisible() ? "\<c-n>" : "\<tab>"
-inoremap <expr><S-tab> pumvisible() ? "\<c-p>" : "\<tab>"
-
 " Fzf
 map <C-p> :FZF<CR>
 
+" CoC
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+" Vim-test
+nnoremap <silent> <Leader>t :TestFile<CR>
+nnoremap <silent> <Leader>n :TestNearest<CR>
+nnoremap <silent> <Leader>l :TestLast<CR>
 
 set noerrorbells                " No beeps
 set novisualbell
@@ -191,6 +209,5 @@ au FileType go nmap <Leader>s <Plug>(go-implements)
 au FileType go nmap <Leader>e <Plug>(go-rename)
 au FileType go nmap <Leader>i <Plug>(go-info)
 "TypeScript
-au FileType typescript nmap <leader>g :TsuDefinition<cr>:TsuDefinition<cr>
-au FileType typescript nmap <leader>b :TsuGoBack<cr>
-let g:tsuquyomi_disable_quickfix = 1
+nmap <Leader>g <Plug>(coc-definition)
+nmap <Leader>gt <Plug>(coc-type-definition)
