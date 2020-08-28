@@ -12,3 +12,6 @@
 
 - name: Install neomutt
   homebrew: name=neomutt
+
+- name: Install taskwarrior
+  homebrew: name=task

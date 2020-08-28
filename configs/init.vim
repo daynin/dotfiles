@@ -9,6 +9,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
+Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -16,6 +17,9 @@ Plug 'thinca/vim-quickrun'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
 Plug 'janko/vim-test'
+Plug 'pechorin/any-jump.vim'
+Plug 'mhinz/vim-startify'
+Plug 'vimwiki/vimwiki'
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
 Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
@@ -46,12 +50,22 @@ Plug 'ElmCast/elm-vim', { 'for': 'elm' }
 Plug 'altercation/vim-colors-solarized'
 Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
-"Markdown
-Plug 'plasticboy/vim-markdown', { 'for': 'markdown' }
+Plug 'hardcoreplayers/oceanic-material'
+Plug 'reedes/vim-colors-pencil'
 "TOML
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 "Nim
 Plug 'alaviss/nim.nvim', { 'for': 'nim' }
+"Elixir
+Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
+" Markdown
+Plug 'reedes/vim-lexical', { 'for': [ 'markdown', 'vimwiki' ] }
+" Graphviz
+Plug 'liuchengxu/graphviz.vim', { 'for': 'dot' }
+" SMT2
+Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
+" R
+Plug 'jalvesaq/Nvim-R', { 'branch': 'stable', 'for': 'r' }
 
 call plug#end()
 
@@ -59,29 +73,36 @@ call plug#end()
 set autoread
 syntax enable
 set t_Co=256
+set spelllang=en,ru
 
-colorscheme gruvbox
-set background=dark
-
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
-
-set tabstop=4
+set tabstop=2
 set shiftwidth=4
 set expandtab
 set autoindent
 set number
-
+set termguicolors
 set nocursorline
 set nocursorcolumn
 syntax sync minlines=256
+
+"set background=dark
+"colorscheme gruvbox
+
+set background=light
+colorscheme pencil
+
+set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
 
 let g:lightline = {
 \ 'colorscheme': 'jellybeans',
 \ }
 
-set wildmenu " enhanced command line completion
-set hidden " current buffer can be put into background
-set cmdheight=1 " command bar height
+" Autocompletion in vim command line
+set wildmode=longest,list,full
+
+set wildmenu      " enhanced command line completion
+set hidden        " current buffer can be put into background
+set cmdheight=1   " command bar height
 
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
@@ -96,6 +117,7 @@ let g:mapleader = ','
 nnoremap <Leader>s :%s/\<<C-r><C-w>\>/
 nnoremap <C-f> :Ag -Q "
 nnoremap <Leader>gt :FlowJumpToDef<CR>
+nnoremap <Leader><Space> :VimwikiToggleListItem<CR>
 
 " Fzf
 map <C-p> :FZF<CR>
@@ -124,7 +146,7 @@ nnoremap <silent> <Leader>l :TestLast<CR>
 set noerrorbells                " No beeps
 set novisualbell
 set noswapfile                  " Don't use swapfile
-set nobackup                   " Don't create annoying backup files
+set nobackup                    " Don't create annoying backup files
 set splitright                  " Split vertical windows right to the current
 "windows
 set splitbelow                  " Split horizontal windows below to the
@@ -145,12 +167,6 @@ set smartcase " case-sensitive if expresson contains a capital letter
 set hlsearch
 set incsearch " set incremental search, like modern browsers
 set showmatch " show matching braces
-
-"Airline options
-let g:airline_powerline_fonts=1
-let g:airline_left_sep=''
-let g:airline_right_sep=''
-let g:airline_theme='bubblegum'
 
 "Open NERDTree with Ctrl-n
 map <C-n> :NERDTreeToggle<CR>
@@ -211,3 +227,29 @@ au FileType go nmap <Leader>i <Plug>(go-info)
 "TypeScript
 nmap <Leader>g <Plug>(coc-definition)
 nmap <Leader>gt <Plug>(coc-type-definition)
+
+"VimWiki
+let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
+
+"Any Jump
+ " Normal mode: Jump to definition under cursore
+nnoremap <leader>j :AnyJump<CR>
+
+" Visual mode: jump to selected text in visual mode
+xnoremap <leader>j :AnyJumpVisual<CR>
+
+" Normal mode: open previous opened file (after jump)
+nnoremap <leader>ab :AnyJumpBack<CR>
+
+" Normal mode: open last closed search window again
+nnoremap <leader>al :AnyJumpLastResults<CR>
+
+" vim-lexical
+augroup lexical
+  autocmd!
+  autocmd FileType markdown,mkd call lexical#init()
+  autocmd FileType vimwiki call lexical#init()
+  autocmd FileType textile call lexical#init()
+  autocmd FileType text call lexical#init({ 'spell': 0 })
+augroup END
+

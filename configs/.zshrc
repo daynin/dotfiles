@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:/Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64"
 export GOPATH=~/go
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -87,8 +87,12 @@ alias p="cd ~/Documents/projects"
 
 export CLICOLOR=1
 export TERM=xterm-256color
-alias vim='nvim'
 
-export PATH="$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH"
+alias vim='nvim'
+alias cat='bat'
+
 source $HOME/.cargo/env
 
+
+# added by travis gem
+[ -f /Users/daynin/.travis/travis.sh ] && source /Users/daynin/.travis/travis.sh
