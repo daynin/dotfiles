@@ -85,11 +85,8 @@ set nocursorline
 set nocursorcolumn
 syntax sync minlines=256
 
-"set background=dark
-"colorscheme gruvbox
-
-set background=light
-colorscheme pencil
+set background=dark
+colorscheme gruvbox
 
 set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
 
