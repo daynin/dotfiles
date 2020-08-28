@@ -22,8 +22,6 @@ Then you should install Neovim plugins (just exec following):
 :PlugInstall
 ```
 
-And compile YouComplteMe: https://github.com/Valloric/YouCompleteMe#installation
-
 That's all what you need to do to use these dotfiles.
 
 ![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles1.png)
