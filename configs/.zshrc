@@ -53,7 +53,7 @@ plugins=(git)
 
 # User configuration
 
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:/Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64"
+export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:$HOME/.yarn/bin:$HOME/.config/yarn/global/node_modules/.bin:$PATH:/Library/Tex/Distributions/.DefaultTeX/Contents/Programs/x86_64:/Library/Java/JavaVirtualMachines/graalvm-ce-java11-20.2.0/Contents/Home/bin"
 export GOPATH=~/go
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -96,3 +96,6 @@ source $HOME/.cargo/env
 
 # added by travis gem
 [ -f /Users/daynin/.travis/travis.sh ] && source /Users/daynin/.travis/travis.sh
+
+# Created by `userpath` on 2020-11-15 17:04:43
+export PATH="$PATH:/Users/daynin/.local/bin"

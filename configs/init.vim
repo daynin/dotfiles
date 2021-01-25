@@ -9,7 +9,6 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
-Plug 'ryanoasis/vim-devicons'
 Plug 'tpope/vim-fugitive'
 Plug 'itchyny/lightline.vim'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -60,6 +59,7 @@ Plug 'alaviss/nim.nvim', { 'for': 'nim' }
 Plug 'elixir-editors/vim-elixir', { 'for': 'elixir' }
 " Markdown
 Plug 'reedes/vim-lexical', { 'for': [ 'markdown', 'vimwiki' ] }
+Plug 'vim-pandoc/vim-pandoc-syntax', { 'for': [ 'markdown', 'vimwiki' ] }
 " Graphviz
 Plug 'liuchengxu/graphviz.vim', { 'for': 'dot' }
 " SMT2
@@ -88,10 +88,8 @@ syntax sync minlines=256
 set background=dark
 colorscheme gruvbox
 
-set guifont=Droid\ Sans\ Mono\ for\ Powerline\ Nerd\ Font\ Complete:h14
-
 let g:lightline = {
-\ 'colorscheme': 'jellybeans',
+\ 'colorscheme': 'seoul256',
 \ }
 
 " Autocompletion in vim command line
@@ -244,9 +242,11 @@ nnoremap <leader>al :AnyJumpLastResults<CR>
 " vim-lexical
 augroup lexical
   autocmd!
-  autocmd FileType markdown,mkd call lexical#init()
-  autocmd FileType vimwiki call lexical#init()
+  autocmd FileType markdown,mkd,vimwiki call lexical#init()
   autocmd FileType textile call lexical#init()
   autocmd FileType text call lexical#init({ 'spell': 0 })
 augroup END
 
+augroup pandoc_syntax
+  autocmd! FileType vimwiki set syntax=markdown.pandoc
+augroup END
