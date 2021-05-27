@@ -99,3 +99,6 @@ source $HOME/.cargo/env
 
 # Created by `userpath` on 2020-11-15 17:04:43
 export PATH="$PATH:/Users/daynin/.local/bin"
+export PATH="$PATH:/Applications/Racket\ v7.1/bin"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh

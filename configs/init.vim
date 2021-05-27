@@ -1,31 +1,33 @@
 call plug#begin('~/.vim/plugged')
 "common
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'airblade/vim-gitgutter'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all'  }
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'easymotion/vim-easymotion'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdcommenter'
 Plug 'tpope/vim-fugitive'
-Plug 'itchyny/lightline.vim'
-Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'hoob3rt/lualine.nvim'
+Plug 'ryanoasis/vim-devicons'
+Plug 'preservim/nerdtree'
 Plug 'thinca/vim-quickrun'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'rking/ag.vim', { 'on': 'Ag' }
-Plug 'janko/vim-test'
 Plug 'pechorin/any-jump.vim'
 Plug 'mhinz/vim-startify'
 Plug 'vimwiki/vimwiki'
+Plug 'janko/vim-test'
 "HTML
 Plug 'gregsexton/MatchTag', { 'for': ['html', 'javascript'] }
-Plug 'mattn/emmet-vim', { 'for': ['html', 'javascript'] }
 Plug 'othree/html5.vim', { 'for': ['html', 'javascript'] }
 Plug 'tpope/vim-haml', { 'for': 'haml'}
 "CSS/SCSS
-Plug 'ap/vim-css-color', { 'for': ['css', 'scss', 'sass', 'less', 'stylus'] }
+Plug 'norcalli/nvim-colorizer.lua'
 Plug 'cakebaker/scss-syntax.vim', { 'for': ['scss', 'sass'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['css', 'scss'] }
 "JavaScript
@@ -66,7 +68,9 @@ Plug 'liuchengxu/graphviz.vim', { 'for': 'dot' }
 Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
 " R
 Plug 'jalvesaq/Nvim-R', { 'branch': 'stable', 'for': 'r' }
-
+" Racket
+Plug 'wlangstroth/vim-racket', { 'for': [ 'racket', 'scheme' ] }
+Plug 'Olical/conjure', { 'tag': 'v4.19.0', 'for': [ 'racket', 'clojure' ] }
 call plug#end()
 
 " Settings
@@ -83,14 +87,11 @@ set number
 set termguicolors
 set nocursorline
 set nocursorcolumn
+set encoding=UTF-8
 syntax sync minlines=256
 
 set background=dark
 colorscheme gruvbox
-
-let g:lightline = {
-\ 'colorscheme': 'seoul256',
-\ }
 
 " Autocompletion in vim command line
 set wildmode=longest,list,full
@@ -114,17 +115,20 @@ nnoremap <C-f> :Ag -Q "
 nnoremap <Leader>gt :FlowJumpToDef<CR>
 nnoremap <Leader><Space> :VimwikiToggleListItem<CR>
 
-" Fzf
-map <C-p> :FZF<CR>
+" Fuzzy search
+map <C-p> :Telescope find_files<CR>
+
+" File manager
+nnoremap <C-n> :NERDTreeToggle<CR>
 
 " CoC
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+    \ pumvisible() ? "\<C-n>" :
+    \ <SID>check_back_space() ? "\<TAB>" :
+    \ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
@@ -136,7 +140,11 @@ endfunction
 " Vim-test
 nnoremap <silent> <Leader>t :TestFile<CR>
 nnoremap <silent> <Leader>n :TestNearest<CR>
-nnoremap <silent> <Leader>l :TestLast<CR>
+
+hi UltestPass ctermfg=Green guifg=#b8ba25
+hi UltestFail ctermfg=Red guifg=#fb4833
+hi UltestRunning ctermfg=Yellow guifg=#fabc2e
+
 
 set noerrorbells                " No beeps
 set novisualbell
@@ -163,27 +171,16 @@ set hlsearch
 set incsearch " set incremental search, like modern browsers
 set showmatch " show matching braces
 
-"Open NERDTree with Ctrl-n
-map <C-n> :NERDTreeToggle<CR>
-
 "set timeout
 set timeoutlen=1000
 "set ttimeout
 set ttimeoutlen=50
 
-"Emmet settings
-let g:user__install_global = 0
-autocmd FileType html,css EmmetInstall
-au BufRead,BufNewFile *.tl setfiletype lisp
-
-"react settings
-let g:jsx_ext_required = 0
-
 " nvim setup
 " workaround for https://github.com/neovim/neovim/issues/2048
 if has('nvim')
   nmap <BS> <C-W>h
- endif
+endif
 
 "Python settings
 let g:pymode_syntax = 1
@@ -211,18 +208,6 @@ let g:go_highlight_interfaces = 1
 let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
-au FileType go nmap <leader>r <Plug>(go-run)
-au FileType go nmap <leader>b <Plug>(go-build)
-au FileType go nmap <leader>t <Plug>(go-test)
-au FileType go nmap <leader>c <Plug>(go-coverage)
-
-au FileType go nmap <Leader>s <Plug>(go-implements)
-au FileType go nmap <Leader>e <Plug>(go-rename)
-au FileType go nmap <Leader>i <Plug>(go-info)
-"TypeScript
-nmap <Leader>g <Plug>(coc-definition)
-nmap <Leader>gt <Plug>(coc-type-definition)
-
 "VimWiki
 let g:vimwiki_list = [{'path': '~/Dropbox/vimwiki', 'syntax': 'markdown', 'ext': '.md'}]
 
@@ -234,10 +219,10 @@ nnoremap <leader>j :AnyJump<CR>
 xnoremap <leader>j :AnyJumpVisual<CR>
 
 " Normal mode: open previous opened file (after jump)
-nnoremap <leader>ab :AnyJumpBack<CR>
+nnoremap <leader>jb :AnyJumpBack<CR>
 
 " Normal mode: open last closed search window again
-nnoremap <leader>al :AnyJumpLastResults<CR>
+nnoremap <leader>jl :AnyJumpLastResults<CR>
 
 " vim-lexical
 augroup lexical
@@ -250,3 +235,26 @@ augroup END
 augroup pandoc_syntax
   autocmd! FileType vimwiki set syntax=markdown.pandoc
 augroup END
+
+" Conjure
+nnoremap <silent> <Leader>ee :ConjureEvalCurrentForm<CR>
+nnoremap <silent> <Leader>er :ConjureEvalRootForm<CR>
+
+" Treesitter
+
+lua <<EOF
+require'colorizer'.setup()
+
+require'nvim-treesitter.configs'.setup{
+    ensure_installed = "maintained",
+}
+
+require'lualine'.setup {
+    options = {
+        theme = 'jellybeans',
+        component_separators = {'', ''},
+        section_separators = {'', ''},
+        disabled_filetypes = {}
+    },
+}
+EOF
