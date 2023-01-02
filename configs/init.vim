@@ -53,6 +53,8 @@ Plug 'morhetz/gruvbox'
 Plug 'lifepillar/vim-solarized8'
 Plug 'hardcoreplayers/oceanic-material'
 Plug 'reedes/vim-colors-pencil'
+Plug 'NLKNguyen/papercolor-theme'
+Plug 'EdenEast/nightfox.nvim'
 "TOML
 Plug 'cespare/vim-toml', { 'for': 'toml' }
 "Nim
@@ -69,12 +71,16 @@ Plug 'bohlender/vim-smt2', { 'for': 'smt2' }
 " R
 Plug 'jalvesaq/Nvim-R', { 'branch': 'stable', 'for': 'r' }
 " Racket
-Plug 'wlangstroth/vim-racket', { 'for': [ 'racket', 'scheme' ] }
-Plug 'Olical/conjure', { 'tag': 'v4.19.0', 'for': [ 'racket', 'clojure' ] }
+Plug 'wlangstroth/vim-racket', { 'for': [ 'racket', 'scheme', 'rosettesafe' ] }
+Plug 'Olical/conjure', { 'tag': 'v4.19.0', 'for': [ 'racket', 'clojure', 'rosettesafe' ] }
+" Nim
+Plug 'alaviss/nim.nvim', { 'for': 'nim' }
 call plug#end()
 
 " Settings
 set autoread
+au FocusGained * :checktime
+autocmd BufRead,BufNewFile *.rkt setlocal filetype=racket
 syntax enable
 set t_Co=256
 set spelllang=en,ru
@@ -91,7 +97,7 @@ set encoding=UTF-8
 syntax sync minlines=256
 
 set background=dark
-colorscheme gruvbox
+colorscheme nordfox
 
 " Autocompletion in vim command line
 set wildmode=longest,list,full
@@ -106,7 +112,6 @@ set nocompatible " not compatible with vi
 
 " make backspace behave in a sane manner
 set backspace=indent,eol,start
-"find a word
 
 " set a map leader for more key combos
 let g:mapleader = ','
@@ -246,12 +251,12 @@ lua <<EOF
 require'colorizer'.setup()
 
 require'nvim-treesitter.configs'.setup{
-    ensure_installed = "maintained",
+    ensure_installed = "all",
 }
 
 require'lualine'.setup {
     options = {
-        theme = 'jellybeans',
+        theme = 'onedark',
         component_separators = {'', ''},
         section_separators = {'', ''},
         disabled_filetypes = {}

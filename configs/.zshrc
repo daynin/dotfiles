@@ -100,5 +100,14 @@ source $HOME/.cargo/env
 # Created by `userpath` on 2020-11-15 17:04:43
 export PATH="$PATH:/Users/daynin/.local/bin"
 export PATH="$PATH:/Applications/Racket\ v7.1/bin"
+export PATH="$PATH:/usr/local/opt/ruby/bin/ruby"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+if [ -e /Users/daynin/.nix-profile/etc/profile.d/nix.sh ]; then . /Users/daynin/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+eval "$(rbenv init - zsh)"
+
