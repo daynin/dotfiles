@@ -14,7 +14,7 @@ These dotfiles provide LSP-based auto-completion and fuzzy search for Neovim, as
 - 🔌 **Lua powered configs**. Completely rewritten in Lua Neovim's configuration makes it easier extensible and faster.
 - 🖇️ **Tight integration of Nvim and Tmux**. Jump across a project without obstetrical, work line there's no borders anymore.
 
-![demo](./imgs/showcase.gif)
+![demo](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/showcase.gif)
 
 ## Get started
 
