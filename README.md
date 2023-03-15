@@ -1,32 +1,30 @@
-## Dotfiles
----
-![](https://img.shields.io/badge/works%20on-OS%20X-D376B3.svg)
+# Dotfiles
 
-To install these dotfiles you should run the following command:
+![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)
+![](https://img.shields.io/badge/works%20-Fedora-51A1D9.svg)
+![](https://img.shields.io/badge/startuptime%20-<%20100%20ms-97CA00.svg)
+
+> A lightweight configuration of Kitty terminal, Tmux and Neovim.
+
+These dotfiles provide LSP-based auto-completion and fuzzy search for Neovim, as well as allowing easy navigation through Tmux panes and Nvim buffers using the same keybindings. This makes Neovim as powerful as an IDE, and even better!
+
+## Key featrures
+
+- ⚡ **Super lightweight**. Here's a pretty limited set of plugins and tools to make Neovim work fast and really efficient at the same time.
+- 🔌 **Lua powered configs**. Completely rewritten in Lua Neovim's configuration makes it easier extensible and faster.
+- 🖇️ **Tight integration of Nvim and Tmux**. Jump across a project without obstetrical, work line there's no borders anymore.
+
+![demo](./imgs/showcase.gif)
+
+## Get started
+
+For a completely automated installation, you need to use Fedora and [Ansible](https://www.ansible.com/). With this setup, you can just run the following command:
 
 ```
-make install-ansible && make install
+make
 ```
 
-It'll install on your computer:
-
-- python
-- neovim
-- tmux
-- curl
-- zsh
-
-Then you should install Neovim plugins (just exec following):
-
-```
-:PlugInstall
-```
-
-That's all what you need to do to use these dotfiles.
-
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles1.png)
-
-These are my tmux, vim, neovim, editorconfig and zsh configs.
+But you still can use all these dotfiles in any OS you want. Just copy dotfiles of your choise or install in using [GNU Stow](https://www.gnu.org/software/stow/).
 
 ### Tmux
 
@@ -38,28 +36,5 @@ These are my tmux, vim, neovim, editorconfig and zsh configs.
 4. Active pane
 5. Simple date/time info panel
 
-### Tmux hot keys
 
-There are only one thing you should know: you can use <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> to jump between panes
-
-### Vim hot keys
-
-First of all, you should know that my <kbd>Leader</kbd> key is <kbd>,</kbd>
-
-
-| Action        | Binding       | 
-| ------------- |:-------------:|
-| Toggle nerd tree | <kbd>Ctrl</kbd> + <kbd>n</kbd> |
-| Show Ctrl-p panel | <kbd>Ctrl</kbd> + <kbd>p</kbd> |
-| Switch buffer | <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> |
-| Find and replace word under the cursor | <kbd>Leader</kbd> + <kbd>s</kbd> |
-
-That's all. Remaining keys are default.
-
-### Terminal emulator settings
-
-**NOTE:** You have to set "Droid Sans Mono for Powerline Nerd Font Complete.otf" as a font by default in your terminal emulator.
-
-Like that:
-
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/terminal-settings.png)
+To jump between panes and vim buffers you can use <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd>. These keybindings work across all working environment.
