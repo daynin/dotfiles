@@ -1,5 +1,15 @@
 - name: Install git
-  homebrew: name=git
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - git
 
 - name: Install Git Extras
-  homebrew: name=git-extras
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - git-extras

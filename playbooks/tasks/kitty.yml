@@ -1,8 +1,7 @@
-- name: Install tmux
+- name: Install Kitty
   become: true
   become_user: root
   dnf:
     state: present
     name:
-      - tmux
-
+      - kitty

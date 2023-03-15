@@ -15,7 +15,12 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'navarasu/onedark.nvim',
-  'airblade/vim-gitgutter',
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('gitsigns').setup()
+    end
+  },
   'christoomey/vim-tmux-navigator',
   {
     'nvim-treesitter/nvim-treesitter',
