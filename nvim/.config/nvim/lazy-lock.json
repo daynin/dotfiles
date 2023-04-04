@@ -15,13 +15,16 @@
   "mason.nvim": { "branch": "main", "commit": "441c9ea2ab385c2e6407a637775b4b392533d265" },
   "nvim-autopairs": { "branch": "master", "commit": "e755f366721bc9e189ddecd39554559045ac0a18" },
   "nvim-cmp": { "branch": "main", "commit": "feed47fd1da7a1bad2c7dca456ea19c8a5a9823a" },
+  "nvim-colorizer.lua": { "branch": "master", "commit": "36c610a9717cc9ec426a07c8e6bf3b3abcb139d6" },
   "nvim-lspconfig": { "branch": "master", "commit": "4bb0f1845c5cc6465aecedc773fc2d619fcd8faf" },
   "nvim-tree.lua": { "branch": "master", "commit": "1d79a64a88af47ddbb55f4805ab537d11d5b908e" },
   "nvim-treesitter": { "branch": "master", "commit": "89e5fa66cf53854f45cfcfae45afb93171cf5c05" },
   "nvim-web-devicons": { "branch": "master", "commit": "b8d0c99578dcb9d084a45ca4b3a4a502712c2741" },
   "onedark.nvim": { "branch": "master", "commit": "4497678c6b1847b663c4b23000d55f28a2f846ce" },
   "plenary.nvim": { "branch": "master", "commit": "253d34830709d690f013daf2853a9d21ad7accab" },
+  "ripgrep": { "branch": "master", "commit": "a7ae9e4043533ba1b6e2f63b989b84f27d961b37" },
   "telescope.nvim": { "branch": "master", "commit": "a3f17d3baf70df58b9d3544ea30abe52a7a832c2" },
   "vim-test": { "branch": "master", "commit": "c63b94c1e5089807f4532e05f087351ddb5a207c" },
-  "vim-tmux-navigator": { "branch": "master", "commit": "cdd66d6a37d991bba7997d593586fc51a5b37aa8" }
+  "vim-tmux-navigator": { "branch": "master", "commit": "cdd66d6a37d991bba7997d593586fc51a5b37aa8" },
+  "zig.vim": { "branch": "master", "commit": "a0d9adedafeb1a33a0159d16ddcdf194b7cea881" }
 }

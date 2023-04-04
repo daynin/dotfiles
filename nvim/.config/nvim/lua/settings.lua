@@ -13,6 +13,7 @@ o.autoindent = true
 o.termguicolors = true
 o.nocursorline = true
 o.nocursorcolumn = true
+o.clipboard = 'unnamedplus'
 o.endfunction = 'UTF-8'
 o.minlines = 256
 o.background = 'dark'

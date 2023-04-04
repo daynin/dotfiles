@@ -17,12 +17,20 @@ require('lazy').setup({
   'navarasu/onedark.nvim',
   'vim-test/vim-test',
   {
+    'norcalli/nvim-colorizer.lua',
+    config = function()
+      vim.o.termguicolors = true
+      require('colorizer').setup()
+    end
+  },
+  {
     'lewis6991/gitsigns.nvim',
     config = function()
       require('gitsigns').setup()
     end
   },
   'christoomey/vim-tmux-navigator',
+  'ziglang/zig.vim',
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()
@@ -51,6 +59,7 @@ require('lazy').setup({
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'BurntSushi/ripgrep',
     }
   },
   {
