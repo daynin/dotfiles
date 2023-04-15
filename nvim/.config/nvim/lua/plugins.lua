@@ -16,11 +16,13 @@ vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
   'navarasu/onedark.nvim',
   'vim-test/vim-test',
+  'tpope/vim-fugitive',
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
       vim.o.termguicolors = true
       require('colorizer').setup()
+      vim.cmd.colorscheme('onedark')
     end
   },
   {
@@ -124,13 +126,22 @@ require('lazy').setup({
     }
   },
   {
-    'nvim-tree/nvim-tree.lua',
-    version = '*',
+    'nvim-neo-tree/neo-tree.nvim',
+    version = "v2.x",
     dependencies = {
-      'nvim-tree/nvim-web-devicons',
+      "nvim-lua/plenary.nvim",
+      "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+      "MunifTanjim/nui.nvim",
     },
     config = function()
-      require('nvim-tree').setup {}
+      require('neo-tree').setup({
+        filesystem = {
+          follow_current_file = true,
+          filtered_items = {
+            hide_dotfiles = false,
+          },
+        },
+      })
     end,
   }
 })

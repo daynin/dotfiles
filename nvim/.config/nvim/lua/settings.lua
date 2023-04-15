@@ -43,5 +43,3 @@ o.showmatch = true
 o.timeoutlen = 1000
 o.ttimeoutlen = 50
 
-vim.cmd.colorscheme('onedark')
-

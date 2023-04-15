@@ -6,3 +6,19 @@
     name:
       - neovim
 
+# Deps
+- name: Install ripgrep
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - ripgrep
+
+- name: Install g++
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - g++
