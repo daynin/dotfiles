@@ -10,4 +10,4 @@ map('n', '<Leader>t', ':TestFile<cr>')
 map('n', '<Leader>n', ':TestNearest<cr>')
 
 map('n', '<Leader>r', function() vim.lsp.buf.rename() end)
-map('n', '<C-h>', function() vim.lsp.buf.signature_help() end)
+map('n', '<Leader>h', function() vim.lsp.buf.signature_help() end)
