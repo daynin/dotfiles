@@ -1,6 +1,9 @@
 local g = vim.g
 local o = vim.o
 
+vim.opt.listchars = { nbsp = '␣', trail = '·' }
+vim.opt.list = true
+
 g.mapleader = ','
 o.autoread = true
 o.t_Co = 256
@@ -8,7 +11,6 @@ o.spelllang = 'ru,en'
 o.tabstop = 2
 o.shiftwidth = 2
 o.number = true
-o.relativenumber = true
 o.expandtab = true
 o.autoindent = true
 o.termguicolors = true
