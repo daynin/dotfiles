@@ -15,6 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   'navarasu/onedark.nvim',
+  'catppuccin/nvim',
   'vim-test/vim-test',
   'tpope/vim-fugitive',
   {
@@ -22,7 +23,7 @@ require('lazy').setup({
     config = function()
       vim.o.termguicolors = true
       require('colorizer').setup()
-      vim.cmd.colorscheme('onedark')
+      vim.cmd.colorscheme('catppuccin-frappe')
     end
   },
   {
@@ -33,6 +34,7 @@ require('lazy').setup({
   },
   'christoomey/vim-tmux-navigator',
   'ziglang/zig.vim',
+  "simrat39/rust-tools.nvim",
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()
@@ -78,7 +80,7 @@ require('lazy').setup({
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'onedark',
+          theme = 'catppuccin',
           component_separators = { '', '' },
           section_separators = { '', '' },
           disabled_filetypes = {},
@@ -173,6 +175,10 @@ require('lazy').setup({
         },
       }
     end,
+  },
+  {
+    "folke/trouble.nvim",
+      dependencies = { "nvim-tree/nvim-web-devicons" },
   },
 })
 

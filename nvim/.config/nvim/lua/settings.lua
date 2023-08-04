@@ -1,7 +1,7 @@
 local g = vim.g
 local o = vim.o
 
-vim.opt.listchars = { nbsp = '␣', trail = '·' }
+vim.opt.listchars = { nbsp = '␣', trail = '·', tab = '| |' }
 vim.opt.list = true
 
 g.mapleader = ','

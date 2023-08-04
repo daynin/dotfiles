@@ -6,7 +6,7 @@ if wezterm.config_builder then
 end
 
 -- Config
-config.color_scheme = 'OneDark (base16)'
+config.color_scheme = 'Catppuccin Frappe'
 config.hide_tab_bar_if_only_one_tab = true
 config.window_frame = {
   -- The overall background color of the tab bar when
