@@ -18,6 +18,9 @@ require('lazy').setup({
   'catppuccin/nvim',
   'vim-test/vim-test',
   'tpope/vim-fugitive',
+  'christoomey/vim-tmux-navigator',
+  'ziglang/zig.vim',
+  "simrat39/rust-tools.nvim",
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
@@ -32,9 +35,6 @@ require('lazy').setup({
       require('gitsigns').setup()
     end
   },
-  'christoomey/vim-tmux-navigator',
-  'ziglang/zig.vim',
-  "simrat39/rust-tools.nvim",
   {
     'nvim-treesitter/nvim-treesitter',
     config = function()
@@ -154,26 +154,6 @@ require('lazy').setup({
           },
         },
       })
-    end,
-  },
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = "~/notes",
-              },
-            },
-          },
-        },
-      }
     end,
   },
   {
