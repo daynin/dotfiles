@@ -1,0 +1,55 @@
+
+- name: Install wez terminal
+  community.general.flatpak:
+    name: org.wezfurlong.wezterm
+    state: present
+
+- name: Install VLC
+  community.general.flatpak:
+    name: org.videolan.VLC
+    state: present
+
+- name: Install Telegram
+  community.general.flatpak:
+    name: org.telegram.desktop
+    state: present
+
+- name: Install Zoom
+  community.general.flatpak:
+    name: us.zoom.Zoom
+    state: present
+
+- name: Install Obsidian
+  community.general.flatpak:
+    name: md.obsidian.Obsidian
+    state: present
+
+- name: Install Slack
+  community.general.flatpak:
+    name: com.slack.Slack
+    state: present
+
+- name: Install Citra
+  community.general.flatpak:
+    name: org.citra_emu.citra
+    state: present
+
+- name: Install DuckStation
+  community.general.flatpak:
+    name: org.duckstation.DuckStation
+    state: present
+
+- name: Install KeePass
+  community.general.flatpak:
+    name: org.keepassxc.KeePassXC
+    state: present
+
+- name: Install Authenticator
+  community.general.flatpak:
+    name: com.belmoussaoui.Authenticator
+    state: present
+
+- name: Install Transmission
+  community.general.flatpak:
+    name: com.transmissionbt.Transmission
+    state: present

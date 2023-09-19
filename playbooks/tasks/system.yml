@@ -1,0 +1,41 @@
+- name: Install node.js
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - nodejs
+
+- name: Install rust
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - rust
+
+- name: Install cargo
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - cargo
+
+- name: Install Fira Code font
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - fira-code-fonts
+
+- name: Install FD
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - fd-find
+
+

@@ -22,3 +22,10 @@
     state: present
     name:
       - g++
+
+- name: Install nodejs neovim
+  become: true
+  become_user: root
+  community.general.npm:
+    name: neovim
+    global: true

@@ -1,0 +1,15 @@
+- name: Install stow
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - stow
+
+- name: Install fish
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - fish

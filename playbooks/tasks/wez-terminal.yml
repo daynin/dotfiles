@@ -1,0 +1,12 @@
+- name: Install wez terminal
+  community.general.flatpak:
+    name: org.wezfurlong.wezterm
+    state: present
+
+- name: Run expect to wait for a successful PXE boot via out-of-band CIMC
+  ansible.builtin.shell: |
+    tempfile=$(mktemp) \
+    && curl -o $tempfile https://raw.githubusercontent.com/wez/wezterm/main/termwiz/data/wezterm.terminfo \
+    && tic -x -o ~/.terminfo $tempfile \
+    && rm $tempfile
+

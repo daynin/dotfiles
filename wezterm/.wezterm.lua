@@ -17,6 +17,7 @@ config.window_frame = {
   -- the window is not focused
   inactive_titlebar_bg = '#282C34',
 }
+
 config.term = 'wezterm'
 
 return config
