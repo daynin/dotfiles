@@ -13,12 +13,6 @@
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
-  boot.loader.efi.efiSysMountPoint = "/boot/efi";
-
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -31,36 +25,45 @@
   networking.networkmanager.enable = true;
 
   # Set your time zone.
-  time.timeZone = "Europe/Moscow";
+  time.timeZone = "Asia/Almaty";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_US.UTF-8";
 
   i18n.extraLocaleSettings = {
-    LC_ADDRESS = "ru_RU.UTF-8";
-    LC_IDENTIFICATION = "ru_RU.UTF-8";
-    LC_MEASUREMENT = "ru_RU.UTF-8";
-    LC_MONETARY = "ru_RU.UTF-8";
-    LC_NAME = "ru_RU.UTF-8";
-    LC_NUMERIC = "ru_RU.UTF-8";
-    LC_PAPER = "ru_RU.UTF-8";
-    LC_TELEPHONE = "ru_RU.UTF-8";
-    LC_TIME = "ru_RU.UTF-8";
+    LC_ADDRESS = "en_US.UTF-8";
+    LC_IDENTIFICATION = "en_US.UTF-8";
+    LC_MEASUREMENT = "en_US.UTF-8";
+    LC_MONETARY = "en_US.UTF-8";
+    LC_NAME = "en_US.UTF-8";
+    LC_NUMERIC = "en_US.UTF-8";
+    LC_PAPER = "en_US.UTF-8";
+    LC_TELEPHONE = "en_US.UTF-8";
+    LC_TIME = "en_US.UTF-8";
   };
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
 
-  # Enable the GNOME Desktop Environment.
-  services.xserver.displayManager.gdm.enable = true;
-  # services.xserver.desktopManager.gnome.enable = true;
-  services.xserver.windowManager.qtile.enable = true;
+  programs.hyprland = {
+    enable = true;
+    xwayland.enable = true;
+  };
+
+  environment = {
+    variables = {
+      EDITOR = "nvim";
+    };
+    sessionVariables = {
+      WLR_NO_HARDWARE_CURSORS = "1";
+      NIXOS_OZONE_WL = "1";
+    };
+  };
 
   # Configure keymap in X11
   services.xserver = {
-    layout = "us,ru";
+    layout = "us";
     xkbVariant = "";
-    dpi = 192;
   };
 
   # Enable CUPS to print documents.
@@ -84,42 +87,30 @@
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
-  services.xserver.libinput = {
-    enable = true;
-    touchpad.tapping = true;
-    touchpad.naturalScrolling = true;
-  };
+  # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.daynin = {
+  users.users.sgolovin = {
     isNormalUser = true;
-    description = "daynin";
+    description = "sgolovin";
     extraGroups = [ "networkmanager" "wheel" ];
+    shell = pkgs.fish;
     packages = with pkgs; [
-      udisks
-      mullvad-vpn
+      firefox
       librewolf
-      chromium
-      discord
-      thunderbird
       tdesktop # Telegram Desktop app
+      zoom-us
+
       dropbox
       keepassxc
 
-      # tools
-      kitty
-      tmux
-      emacs
+      taskwarrior
     ];
   };
 
-  fonts.fonts = with pkgs; [
-    (nerdfonts.override { fonts = [ "FiraCode" ]; })
-  ];
-
   # Enable automatic login for the user.
   services.xserver.displayManager.autoLogin.enable = true;
-  services.xserver.displayManager.autoLogin.user = "daynin";
+  services.xserver.displayManager.autoLogin.user = "sgolovin";
 
   # Workaround for GNOME autologin: https://github.com/NixOS/nixpkgs/issues/103746#issuecomment-945091229
   systemd.services."getty@tty1".enable = false;
@@ -128,27 +119,86 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
   environment.systemPackages = with pkgs; [
-    # deps
-    brightnessctl # manage brightness (for qtile only)
-    alsa-utils # manage sound (for qtile only)
+    # for wayland
+    wayland-protocols
+    wayland-utils
+    wlroots
 
-    # langs
-    gcc
-    cargo
-    nodejs
+    # system
+    brightnessctl
 
-    # tools
-    neovim
+    #utils
     git
-    git-extras
+    neovim
+    tmux
     stow
-    btop
-    rofi
+    wget
+    unzip
+    neofetch
+    distrobox
+    podman
+    ranger
+
+    kitty
+    wezterm
+
+    # for nvim
     ripgrep
+    gcc
+    wl-clipboard
+    tree-sitter
+    fd
+
+    hyprland
+    swww
+    xwayland
+
+    waybar
+    (waybar.overrideAttrs (oldAttrs: {
+      mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
+    }))
+
+    libnotify
+    dunst
+
+    rofi-wayland
+
+    # nodejs
+    nodejs_20
+    nodePackages.typescript-language-server
+    nodePackages.eslint
   ];
+
+  fonts.packages = with pkgs; [
+    # font-awesome
+    # fira-code
+    (nerdfonts.override { fonts = [ "FiraCode" ]; })
+  ];
+
+  programs.fish.enable = true;
+
+  virtualisation = {
+    podman = {
+      enable = true;
+
+      # Create a `docker` alias for podman, to use it as a drop-in replacement
+      dockerCompat = true;
+
+      # Required for containers under podman-compose to be able to talk to each other.
+      defaultNetwork.settings.dns_enabled = true;
+    };
+  };
+
+  xdg.portal = {
+    enable = true;
+    wlr.enable = true;
+
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+      # xdg-desktop-portal-hyprland
+    ];
+  };
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -163,12 +213,6 @@
   # Enable the OpenSSH daemon.
   # services.openssh.enable = true;
 
-  services.mullvad-vpn.enable = true;
-
-  programs.fish.enable = true;
-  users.defaultUserShell = pkgs.fish;
-  environment.shells = with pkgs; [ fish ]; # To add a shell to /etc/shells
-
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
   # networking.firewall.allowedUDPPorts = [ ... ];
@@ -181,6 +225,6 @@
   # this value at the release version of the first install of this system.
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
-  system.stateVersion = "22.11"; # Did you read the comment?
+  system.stateVersion = "23.05"; # Did you read the comment?
 
 }
