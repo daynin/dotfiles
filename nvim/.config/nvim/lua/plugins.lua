@@ -20,7 +20,18 @@ require('lazy').setup({
   'tpope/vim-fugitive',
   'christoomey/vim-tmux-navigator',
   'ziglang/zig.vim',
-  "simrat39/rust-tools.nvim",
+  'simrat39/rust-tools.nvim',
+  {
+    'folke/flash.nvim',
+    event = "VeryLazy",
+    opts = {},
+    keys = {
+      { 's', mode = { 'n', 'x', 'o' }, function() require('flash').jump() end, desc = 'flash' },
+      { "r", mode = "o", function() require("flash").remote() end, desc = "Remote Flash" },
+      { "R", mode = { "o", "x" }, function() require("flash").treesitter_search() end, desc = "Treesitter Search" },
+      { "<c-s>", mode = { "c" }, function() require("flash").toggle() end, desc = "Toggle Flash Search" },
+    },
+  },
   {
     'norcalli/nvim-colorizer.lua',
     config = function()
@@ -39,7 +50,7 @@ require('lazy').setup({
     'nvim-treesitter/nvim-treesitter',
     config = function()
       require('nvim-treesitter.configs').setup({
-        -- A list of parser names, or "all" (the five listed parsers should always be installed)
+        -- A list of parser names, or 'all' (the five listed parsers should always be installed)
         ensure_installed = { 'javascript', 'typescript', 'lua', 'vim', 'query' },
         -- Install parsers synchronously (only applied to `ensure_installed`)
         sync_install = false,
@@ -138,7 +149,7 @@ require('lazy').setup({
   },
   {
     'nvim-neo-tree/neo-tree.nvim',
-    version = "v2.x",
+    version = 'v2.x',
     dependencies = {
       'nvim-lua/plenary.nvim',
       'nvim-tree/nvim-web-devicons',
@@ -157,8 +168,23 @@ require('lazy').setup({
     end,
   },
   {
-    "folke/trouble.nvim",
-      dependencies = { "nvim-tree/nvim-web-devicons" },
+    'folke/trouble.nvim',
+      dependencies = { 'nvim-tree/nvim-web-devicons' },
+  },
+  { 
+    'nvim-neotest/neotest',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'antoinemadec/FixCursorHold.nvim',
+      'nvim-neotest/neotest-jest',
+    },
+    config = function()
+      require('neotest').setup({
+        adapters = {
+          require('neotest-jest')({ jestCommand = 'yarn workspaces foreach run test' }),
+        }
+      })
+    end
   },
 })
 
