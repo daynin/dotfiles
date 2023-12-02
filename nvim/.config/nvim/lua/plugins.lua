@@ -180,8 +180,25 @@ require('lazy').setup({
     },
     config = function()
       require('neotest').setup({
+        icons = {
+          passed = '●',
+          running = '●',
+          failed = '●',
+        },
+        output = {
+          enabled = true,
+          open_on_run = "enter"
+        },
+        output_panel = {
+          enabled = true,
+          open = "botright split | resize 30"
+        },
         adapters = {
-          require('neotest-jest')({ jestCommand = 'yarn workspaces foreach run test' }),
+          require('neotest-jest')({ 
+            env = { TZ = 'UTC' },
+            jestConfigFile = 'tool/jest.config.ts',
+            jestCommand = 'yarn jest' 
+          }),
         }
       })
     end

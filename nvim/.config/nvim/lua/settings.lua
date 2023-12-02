@@ -5,6 +5,7 @@ vim.opt.listchars = { nbsp = '␣', trail = '·', tab = '| |' }
 vim.opt.list = true
 
 g.mapleader = ','
+o.exrc = true
 o.autoread = true
 o.t_Co = 256
 o.spelllang = 'ru,en'
