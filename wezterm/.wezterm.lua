@@ -18,6 +18,13 @@ config.window_frame = {
   inactive_titlebar_bg = '#282C34',
 }
 
+config.window_padding = {
+  left = 0,
+  right = 0,
+  top = 0,
+  bottom = 0,
+}
+
 config.term = 'wezterm'
 
 return config
