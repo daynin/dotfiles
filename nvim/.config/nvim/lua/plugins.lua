@@ -21,6 +21,33 @@ require('lazy').setup({
   'christoomey/vim-tmux-navigator',
   'ziglang/zig.vim',
   'simrat39/rust-tools.nvim',
+  'David-Kunz/gen.nvim',
+  {
+    "nvim-neorg/neorg",
+    build = ":Neorg sync-parsers",
+    -- tag = "*",
+    dependencies = { "nvim-lua/plenary.nvim" },
+    config = function()
+      require("neorg").setup {
+        load = {
+          ["core.defaults"] = {}, -- Loads default behaviour
+          ["core.concealer"] = {}, -- Adds pretty icons to your documents
+          ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+              workspaces = {
+                notes = "~/Sync/notes",
+              },
+            },
+          },
+        },
+      }
+    end,
+  },
+  {
+    'folke/todo-comments.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim' },
+    opts = { }
+  },
   {
     'norcalli/nvim-colorizer.lua',
     config = function()

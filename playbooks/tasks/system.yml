@@ -39,3 +39,6 @@
       - fd-find
 
 
+- name: Install Bun
+  ansible.builtin.shell:
+    cmd: curl -fsSL https://bun.sh/install | bash
