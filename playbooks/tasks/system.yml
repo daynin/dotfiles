@@ -38,6 +38,13 @@
     name:
       - fd-find
 
+- name: Install Taskwarrior
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - task
 
 - name: Install Bun
   ansible.builtin.shell:
