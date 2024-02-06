@@ -3,6 +3,7 @@ local o = vim.o
 
 vim.opt.listchars = { nbsp = '␣', trail = '·', tab = '| |' }
 vim.opt.list = true
+vim.opt.foldenable = false
 
 g.mapleader = ','
 o.exrc = true
