@@ -11,10 +11,9 @@ These dotfiles provide LSP-based auto-completion and fuzzy search for Neovim, as
 ## Key featrures
 
 - ⚡ **Super lightweight**. Here's a pretty limited set of plugins and tools to make Neovim work fast and really efficient at the same time.
+- 🪄 **Enhanced ergonomic UX**. A minimalistic and informative UI designed to efficiently utilize your terminal space.
 - 🔌 **Lua powered configs**. Completely rewritten in Lua Neovim's configuration makes it easier extensible and faster.
 - 🖇️ **Tight integration of Nvim and Tmux**. Jump across a project without obstetrical, work line there's no borders anymore.
-
-![demo](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/showcase.gif)
 
 ## Get started
 
@@ -28,7 +27,7 @@ But you still can use all these dotfiles in any OS you want. Just copy dotfiles 
 
 ### Tmux
 
-![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles2.png)
+![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles.png)
 
 1. Session name
 2. Inactive window
