@@ -29,11 +29,5 @@ But you still can use all these dotfiles in any OS you want. Just copy dotfiles 
 
 ![](https://raw.githubusercontent.com/daynin/dotfiles/master/imgs/dotfiles.png)
 
-1. Session name
-2. Inactive window
-3. Active window
-4. Active pane
-5. Simple date/time info panel
-
 
 To jump between panes and vim buffers you can use <kbd>Ctrl</kbd> + <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd>. These keybindings work across all working environment.
