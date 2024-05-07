@@ -33,7 +33,7 @@ o.nocompatible = true
 
 o.noerrorbells = true
 o.novisualbell = true
-o.noswapfile = true
+o.swapfile = false
 o.nobackup = true
 o.splitright = true
 o.splitbelow = true
@@ -45,6 +45,5 @@ o.smartcase = true
 o.hlsearch = true
 o.incsearch = true
 o.showmatch = true
-o.timeoutlen = 1000
-o.ttimeoutlen = 50
+o.timeoutlen = 200
 

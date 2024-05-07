@@ -22,27 +22,8 @@ require('lazy').setup({
   'ziglang/zig.vim',
   'simrat39/rust-tools.nvim',
   'David-Kunz/gen.nvim',
-  {
-    "nvim-neorg/neorg",
-    build = ":Neorg sync-parsers",
-    -- tag = "*",
-    dependencies = { "nvim-lua/plenary.nvim" },
-    config = function()
-      require("neorg").setup {
-        load = {
-          ["core.defaults"] = {}, -- Loads default behaviour
-          ["core.concealer"] = {}, -- Adds pretty icons to your documents
-          ["core.dirman"] = { -- Manages Neorg workspaces
-            config = {
-              workspaces = {
-                notes = "~/Sync/notes",
-              },
-            },
-          },
-        },
-      }
-    end,
-  },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  { 'prettier/vim-prettier', build = 'yarn install --immutable' },
   {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
@@ -93,13 +74,23 @@ require('lazy').setup({
       'BurntSushi/ripgrep',
     },
     config = function()
-      require('telescope').setup {
+      local telescope = require('telescope')
+      telescope.setup {
         defaults = {
           layout_config = {
             preview_width = 0.55,
           },
         },
+        extensions = {
+          fzf = {
+            fuzzy = true,                    -- false will only do exact matching
+            override_generic_sorter = true,  -- override the generic sorter
+            override_file_sorter = true,     -- override the file sorter
+          }
+        }
       }
+
+      telescope.load_extension('fzf')
     end
   },
   {
@@ -193,6 +184,7 @@ require('lazy').setup({
       'nvim-lua/plenary.nvim',
       'antoinemadec/FixCursorHold.nvim',
       'nvim-neotest/neotest-jest',
+      'nvim-neotest/nvim-nio',
     },
     config = function()
       require('neotest').setup({
