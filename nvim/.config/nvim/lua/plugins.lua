@@ -17,7 +17,7 @@ require('lazy').setup({
   'navarasu/onedark.nvim',
   'catppuccin/nvim',
   'vim-test/vim-test',
-  'tpope/vim-fugitive',
+  -- 'tpope/vim-fugitive',
   'christoomey/vim-tmux-navigator',
   'ziglang/zig.vim',
   'simrat39/rust-tools.nvim',
