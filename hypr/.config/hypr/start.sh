@@ -4,4 +4,4 @@ swww init &
 swww img ~/.config/hypr/wallpaper.jpg &
 
 waybar &
-dunts
+dunst

@@ -25,6 +25,18 @@ require('lazy').setup({
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'prettier/vim-prettier', build = 'yarn install --immutable' },
   {
+    "NeogitOrg/neogit",
+    dependencies = {
+      "nvim-lua/plenary.nvim",         -- required
+      "sindrets/diffview.nvim",        -- optional - Diff integration
+
+      -- Only one of these is needed, not both.
+      "nvim-telescope/telescope.nvim", -- optional
+      "ibhagwan/fzf-lua",              -- optional
+    },
+    config = true
+  },
+  {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
     opts = { }
