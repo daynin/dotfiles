@@ -13,3 +13,11 @@
     state: present
     name:
       - git-extras
+
+- name: Install Difftastic
+  become: true
+  become_user: root
+  dnf:
+    state: present
+    name:
+      - difft

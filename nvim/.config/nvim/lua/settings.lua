@@ -8,7 +8,6 @@ vim.opt.foldenable = false
 g.mapleader = ','
 o.exrc = true
 o.autoread = true
-o.t_Co = 256
 o.spelllang = 'ru,en'
 o.tabstop = 2
 o.shiftwidth = 2
@@ -16,11 +15,7 @@ o.number = true
 o.expandtab = true
 o.autoindent = true
 o.termguicolors = true
-o.nocursorline = true
-o.nocursorcolumn = true
 o.clipboard = 'unnamedplus'
-o.endfunction = 'UTF-8'
-o.minlines = 256
 o.background = 'dark'
 
 o.wildmode = 'longest,list,full'
@@ -29,12 +24,7 @@ o.hidden = true
 o.cmdheight = 1
 o.langmap = 'ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;\'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>'
 
-o.nocompatible = true
-
-o.noerrorbells = true
-o.novisualbell = true
 o.swapfile = false
-o.nobackup = true
 o.splitright = true
 o.splitbelow = true
 o.fileformats = 'unix,dos,mac'

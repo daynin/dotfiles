@@ -1,0 +1,8 @@
+[diff]
+	tool = difft
+	external = difft
+[user]
+	email = sergey.golovin@protonmail.com
+	name = Sergey Golovin
+[core]
+	editor = nvim
