@@ -22,6 +22,8 @@ require('lazy').setup({
   'ziglang/zig.vim',
   'simrat39/rust-tools.nvim',
   'David-Kunz/gen.nvim',
+  'sainnhe/everforest',
+  'pest-parser/pest.vim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'prettier/vim-prettier', build = 'yarn install --immutable' },
   {
@@ -46,7 +48,7 @@ require('lazy').setup({
     config = function()
       vim.o.termguicolors = true
       require('colorizer').setup()
-      vim.cmd.colorscheme('catppuccin-frappe')
+      vim.cmd.colorscheme('everforest')
     end
   },
   {
@@ -110,7 +112,7 @@ require('lazy').setup({
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'catppuccin',
+          theme = 'everforest',
           component_separators = { '', '' },
           section_separators = { '', '' },
           disabled_filetypes = {},

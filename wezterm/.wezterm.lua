@@ -6,7 +6,8 @@ if wezterm.config_builder then
 end
 
 -- Config
-config.color_scheme = 'Catppuccin Frappe'
+config.warn_about_missing_glyphs = false
+config.color_scheme = 'Everforest Dark (Gogh)'
 config.hide_tab_bar_if_only_one_tab = true
 config.window_frame = {
   -- The overall background color of the tab bar when

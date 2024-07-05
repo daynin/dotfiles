@@ -20,4 +20,4 @@
   dnf:
     state: present
     name:
-      - difft
+      - difftastic
