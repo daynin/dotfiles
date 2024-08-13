@@ -12,10 +12,10 @@ map('n', '<Leader>tn', ':TestNearest<cr>')
 
 map('n', '<Leader>r', vim.lsp.buf.rename)
 map('n', '<Leader>f', vim.lsp.buf.format)
+map('n', '<Leader>gg', neogit.open)
 map('n', 'gs', vim.lsp.buf.signature_help)
 map('n', 'gh', vim.lsp.buf.hover)
 map('n', 'ga', vim.lsp.buf.code_action)
-map('n', 'gg', neogit.open)
 
 map('n', '<Leader>b', builtin.buffers)
 map('n', '<C-p>', function() builtin.git_files { path_display={'truncate'} } end)
