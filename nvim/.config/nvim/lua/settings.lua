@@ -22,7 +22,8 @@ o.wildmode = 'longest,list,full'
 o.wildmenu = true
 o.hidden = true
 o.cmdheight = 1
-o.langmap = 'ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;\'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>'
+o.langmap =
+'ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;\'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>'
 
 o.swapfile = false
 o.splitright = true
@@ -36,4 +37,3 @@ o.hlsearch = true
 o.incsearch = true
 o.showmatch = true
 o.timeoutlen = 200
-

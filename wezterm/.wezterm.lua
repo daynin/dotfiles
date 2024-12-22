@@ -28,6 +28,7 @@ config.window_padding = {
 
 config.window_decorations = 'RESIZE'
 config.term = 'wezterm'
+config.font = wezterm.font 'Maple Mono'
 
 return config
 

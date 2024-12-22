@@ -25,23 +25,23 @@ require('lazy').setup({
   'sainnhe/everforest',
   'pest-parser/pest.vim',
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  { 'prettier/vim-prettier', build = 'yarn install --immutable' },
+  { 'prettier/vim-prettier',                    build = 'yarn install --immutable' },
   {
-    "NeogitOrg/neogit",
+    'NeogitOrg/neogit',
     dependencies = {
-      "nvim-lua/plenary.nvim",         -- required
-      "sindrets/diffview.nvim",        -- optional - Diff integration
+      'nvim-lua/plenary.nvim',  -- required
+      'sindrets/diffview.nvim', -- optional - Diff integration
 
       -- Only one of these is needed, not both.
-      "nvim-telescope/telescope.nvim", -- optional
-      "ibhagwan/fzf-lua",              -- optional
+      'nvim-telescope/telescope.nvim', -- optional
+      'ibhagwan/fzf-lua',              -- optional
     },
     config = true
   },
   {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
-    opts = { }
+    opts = {}
   },
   {
     'norcalli/nvim-colorizer.lua',
@@ -97,9 +97,9 @@ require('lazy').setup({
         },
         extensions = {
           fzf = {
-            fuzzy = true,                    -- false will only do exact matching
-            override_generic_sorter = true,  -- override the generic sorter
-            override_file_sorter = true,     -- override the file sorter
+            fuzzy = true,                   -- false will only do exact matching
+            override_generic_sorter = true, -- override the generic sorter
+            override_file_sorter = true,    -- override the file sorter
           }
         }
       }
@@ -189,10 +189,19 @@ require('lazy').setup({
     end,
   },
   {
-    'folke/trouble.nvim',
-      dependencies = { 'nvim-tree/nvim-web-devicons' },
+    "folke/trouble.nvim",
+    opts = {}, -- for default options, refer to the configuration section for custom setup.
+    cmd = "Trouble",
+    keys = {
+      {
+        "<leader>xx",
+        "<cmd>Trouble diagnostics toggle<cr>",
+        desc = "Diagnostics (Trouble)",
+      },
+    },
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
   },
-  { 
+  {
     'nvim-neotest/neotest',
     dependencies = {
       'nvim-lua/plenary.nvim',
@@ -209,17 +218,17 @@ require('lazy').setup({
         },
         output = {
           enabled = true,
-          open_on_run = "enter"
+          open_on_run = 'enter'
         },
         output_panel = {
           enabled = true,
-          open = "botright split | resize 30"
+          open = 'botright split | resize 30'
         },
         adapters = {
-          require('neotest-jest')({ 
+          require('neotest-jest')({
             env = { TZ = 'UTC' },
             jestConfigFile = 'tool/jest.config.ts',
-            jestCommand = 'yarn jest' 
+            jestCommand = 'yarn jest'
           }),
         }
       })
@@ -236,7 +245,6 @@ local lsp = require('lsp-zero').preset({
 })
 
 lsp.ensure_installed({
-  'tsserver',
   'eslint',
   'rust_analyzer',
 })
@@ -252,4 +260,3 @@ vim.diagnostic.config({
   severity_sort = false,
   float = true,
 })
-
