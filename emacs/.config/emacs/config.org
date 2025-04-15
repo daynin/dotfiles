@@ -1,0 +1,345 @@
+#+Title: Emacs Config File
+#+PROPERTY: header-args :tangle ~/.config/emacs/init.el
+#+STARTUP: hideblocks
+
+* Init package repositories
+#+begin_src elisp
+  (require 'package)
+  (setq package-archives
+	'(("gnu"   . "https://elpa.gnu.org/packages/")
+	  ("melpa" . "https://melpa.org/packages/")
+          ("melpa-stable" . "https://stable.melpa.org/packages/")
+	  ("org"   . "https://orgmode.org/elpa/")))
+  (package-initialize)
+
+  (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
+    (package-install 'use-package))
+
+  (setq use-package-always-ensure t)
+  (require 'use-package)
+#+end_src
+
+* Native Compilation (if available)
+#+begin_src_SRC emacs-lisp
+(when (and (fboundp 'native-comp-available-p)
+           (native-comp-available-p))
+  (setq native-comp-deferred-compilation t))
+#+end_src
+  
+* Set up sane defaults
+#+begin_src elisp
+  (scroll-bar-mode -1)
+  (tool-bar-mode -1)
+  (menu-bar-mode -1)
+  (setq inhibit-startup-screen t)
+  (setq scroll-step 1)
+  (setq make-backup-files nil)
+  (setq auto-save-default nil)
+  (setq create-lockfiles nil)
+  (setq visible-bell t)
+  (setq ring-bell-function 'ignore)
+  (setq show-trailing-whitespace t)
+  (setq treesit-font-lock-level 4)
+  (setq-default indent-tabs-mode nil)
+  (global-display-line-numbers-mode 1)
+  (setq backup-directory-alist '(("." . "~/.cache/emacs-backups")))
+#+end_src
+
+* Install packages
+** Install Org Mode
+
+#+begin_src elisp
+  (use-package org
+    :config
+    (setq org-M-RET-may-split-line '((default . nil)))
+    (setq org-insert-heading-respect-content t)
+    (setq org-log-done 'time)
+    (setq org-log-into-drawer t)
+    (setq org-directory "~/Dropbox/org/")
+    (setq org-agenda-files (list org-directory)))
+
+  (setq lsp-keymap-prefix "s-l")
+#+end_src
+
+** Install Editor Config
+
+#+begin_src elisp
+  (use-package editorconfig
+    :ensure t
+    :config
+    (editorconfig-mode 1))
+#+end_src
+
+** Install and setup languages, LSP, Treesitter and DAP
+
+#+begin_src elisp
+  (use-package racket-mode
+        :ensure t)
+
+  (use-package rust-mode
+    :config
+    (add-hook 'rust-mode-hook
+              (lambda () (setq indent-tabs-mode nil)))
+    (setq rust-format-on-save t))
+
+  (use-package pest-mode
+      :ensure t)
+
+  (use-package treesit-auto
+      :custom
+      (treesit-auto-install 'prompt)
+      :config
+      (setq treesit-auto-langs '(javascript typescript tsx css html rust))
+      (treesit-auto-add-to-auto-mode-alist '(javascript typescript tsx css html rust))
+      (global-treesit-auto-mode))
+
+  (use-package lsp-mode
+      :commands (lsp lsp-deferred)
+      :hook ((prog-mode . lsp-deferred)
+              (lsp-mode . lsp-enable-which-key-integration))
+      :custom
+      (read-process-output-max (* 1024 1024))
+      :config
+      (setq lsp-prefer-flymake nil
+          lsp-idle-delay 0.2
+          lsp-log-io nil))
+
+  (use-package lsp-ui
+      :after lsp-mode
+      :commands lsp-ui-mode
+      :config
+      (setq lsp-ui-doc-position 'bottom
+              lsp-ui-sideline-enable t))
+
+  (use-package lsp-ui
+  :hook (lsp-mode . lsp-ui-mode))
+
+  (use-package flycheck
+      :hook (lsp-mode . flycheck-mode)
+      :bind (:map flycheck-mode-map
+                  ("M-n" . flycheck-previous-error)
+                  ("M-p" . flycheck-next-error))
+      :custom (flycheck-display-errors-delay .3)) 
+#+end_src
+
+** Install Evil Mode
+#+begin_src elisp
+  (use-package evil
+    :ensure t
+    :init
+    (setq evil-want-C-u-scroll t)
+    (setq evil-want-C-i-jump t)
+    (setq evil-want-keybinding nil)
+    :config
+    (evil-mode 1))
+
+  (use-package evil-collection
+    :after evil
+    :ensure t
+    :config
+    (evil-collection-init))
+
+  (use-package undo-tree
+    :ensure t
+    :after evil
+    :diminish
+    :config
+    (setq undo-tree-history-directory-alist '(("." . "~/.config/emacs/undo")))
+    (evil-set-undo-system 'undo-tree)
+    (global-undo-tree-mode 1))
+#+end_src
+
+** Install Magit
+
+#+begin_src elisp
+(use-package magit
+  :ensure t
+  :bind
+  (("C-c g" . magit-status)))
+#+end_src
+
+** Install Consult
+
+#+begin_src elisp
+  (use-package consult
+    :ensure t)
+#+end_src
+
+** Install Which Key
+
+#+begin_src elisp
+(use-package which-key
+  :ensure t
+  :config
+  (which-key-mode))
+#+end_src
+
+** Install and setup Smartparens
+
+#+begin_src elisp
+(use-package smartparens
+  :ensure t
+  :config
+  (require 'smartparens-config)
+  :hook ((clojure-mode emacs-lisp-mode common-lisp-mode lisp-mode racket-mode) . smartparens-mode))
+#+end_src
+
+** Install Sly
+
+#+begin_src elisp
+  (use-package sly)
+
+  (require 'sly-autoloads)
+  (setq inferior-lisp-program "/opt/sbcl/bin/sbcl")
+#+end_src
+
+** Install Projectyle
+
+#+begin_src elisp
+(use-package projectile
+  :ensure t
+  :config
+  (projectile-mode +1))
+#+end_src
+
+** Install Flycheck
+
+#+begin_src elisp
+(use-package flycheck
+  :ensure t
+  :hook ((emacs-lisp-mode clojure-mode) . flycheck-mode))
+#+end_src
+
+** Install Rainbow-delimiters
+
+#+begin_src elisp
+(use-package rainbow-delimiters
+  :ensure t)
+
+(add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
+#+end_src
+
+** Install Marginalia, Vertico, Orderless
+
+#+begin_src elisp
+  (use-package marginalia
+    :ensure t
+    :config
+    (marginalia-mode 1))
+
+  (use-package vertico
+    :ensure t
+    :config
+    (setq vertico-cycle t)
+    (setq vertico-resize nil)
+    (vertico-mode 1))
+
+  (use-package orderless
+    :ensure t
+    :config
+    (setq completion-styles '(orderless basic)))
+#+end_src
+
+** Install packages for UI
+#+begin_src elisp
+  (use-package all-the-icons
+    :ensure t
+    :if (display-graphic-p))
+
+  (use-package nord-theme
+    :ensure t
+    :config
+    (load-theme 'nord t)
+    (set-face-attribute 'default nil :family "Maple Mono" :height 120))
+
+  ;;(use-package gruvbox-theme
+  ;;  :ensure t
+  ;;  :config
+  ;;  (load-theme 'gruvbox t)
+  ;;  (set-face-attribute 'default nil :family "Maple Mono" :height 120))
+
+  (use-package dashboard
+    :ensure t
+    :config
+    (dashboard-setup-startup-hook))
+#+end_src
+
+* Keybindings
+
+#+begin_src elisp
+  (use-package general
+    :ensure t)
+
+  (general-create-definer leader-def
+    :states 'motion
+    :keymaps 'override
+    :prefix "SPC")
+
+  (leader-def
+    "f" '(:ignore t :which-key "file")
+    "f f" '(consult-find :which-key "find file")
+    "f d" '(dired :which-key "open Dired for directory")
+    "f s" '(save-buffer :which-key "save file"))
+
+  (leader-def
+    "/" '(consult-ripgrep :which-key "search in files"))
+
+  (leader-def
+    "k" '(:ignore t :which-key "sexp")
+    "k w" '(sp-wrap-round :which-key "wrap ()")
+    "k [" '(sp-wrap-square :which-key "wrap []")
+    "k {" '(sp-wrap-square :which-key "wrap {}")
+    "k ," '(sp-forward-barf-sexp :which-key "<-)")
+    "k ." '(sp-forward-slurp-sexp :which-key ")->")
+    "k <" '(sp-backward-barf-sexp :which-key "<-(")
+    "k >" '(sp-forward-barf-sexp :which-key "(->")
+    "k d" '(sp-kill-sexp :which-key "delete sexp")
+    "k r" '(sp-raise-sexp :which-key "raise sexp")
+    "k y" '(sp-copy-sexp :which-key "copy sexp"))
+
+  (leader-def
+    "w" '(:ignore t :which-key "window")
+    "w v" '(evil-window-vsplit :which-key "split vertically")
+    "w s" '(evil-window-split :which-key "split horizontally")
+    "w k" '(evil-window-up :which-key "focus ↑")
+    "w h" '(evil-window-left :which-key "focus ←")
+    "w j" '(evil-window-down :which-key "focus ↓")
+    "w l" '(evil-window-right :which-key "focus →")
+    "w d" '(delete-window :which-key "delete window"))
+
+  (leader-def
+    :keymaps 'emacs-lisp-mode-map
+    "m" '(:ignore t :which-key "emacs lisp")
+    "m e" '(:ignore t :which-key "eval")
+    "m e e" 'eval-last-sexp
+    "m e b" 'eval-buffer)
+
+  (leader-def
+    "b" '(:ignore t :which-key "buffer")
+    "b b" '(consult-buffer :which-key "switch buffer")
+    "b l" '(evil-switch-to-windows-last-buffer :which-key "last buffer"))
+
+  (leader-def
+    ;;"g" lsp mappings
+    "g" '(:ignore t :which-key "lsp")
+    "g d" '(evil-goto-definition :which-key "go to definition")
+    "g r" '(lsp-find-references :which-key "find references"))
+
+  (leader-def
+    ;;"p" 'projectile-command-map
+    "p" '(:ignore t :which-key "project")
+    "p f" '(projectile-find-file :which-key "find file in project")
+    "p a" '(projectile-toggle-between-implementation-and-test :which-key "impl <-> test")
+    "p r" '(projectile-replace :which-key "query replace in all files of a project")
+    "p p" '(projectile-switch-project :which-key "switch project"))
+
+  (leader-def
+    "SPC" '(execute-extended-command :which-key "M-x"))
+
+  (general-define-key
+    "<escape>" 'keyboard-escape-quit)
+
+  (setq which-key-idle-delay 0.2)
+  (setq which-key-idle-secondary-delay 0)
+#+end_src

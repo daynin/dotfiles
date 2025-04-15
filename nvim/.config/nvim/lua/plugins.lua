@@ -23,7 +23,11 @@ require('lazy').setup({
   'simrat39/rust-tools.nvim',
   'David-Kunz/gen.nvim',
   'sainnhe/everforest',
+  'shaunsingh/nord.nvim',
   'pest-parser/pest.vim',
+  'mfussenegger/nvim-dap',
+  'theHamsta/nvim-dap-virtual-text',
+  { "rcarriga/nvim-dap-ui",                     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'prettier/vim-prettier',                    build = 'yarn install --immutable' },
   {
@@ -48,7 +52,7 @@ require('lazy').setup({
     config = function()
       vim.o.termguicolors = true
       require('colorizer').setup()
-      vim.cmd.colorscheme('everforest')
+      vim.cmd.colorscheme('nord')
     end
   },
   {
@@ -112,7 +116,7 @@ require('lazy').setup({
     config = function()
       require('lualine').setup({
         options = {
-          theme = 'everforest',
+          theme = 'nord',
           component_separators = { '', '' },
           section_separators = { '', '' },
           disabled_filetypes = {},
@@ -260,3 +264,68 @@ vim.diagnostic.config({
   severity_sort = false,
   float = true,
 })
+
+local dap = require('dap')
+
+dap.adapters.codelldb = {
+  type = 'server',
+  port = '${port}',
+  executable = {
+    command = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb',
+    args = { '--port', '${port}' },
+  }
+}
+
+dap.configurations.rust = {
+  {
+    name = "Debug executable",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
+    end,
+    cwd = '${workspaceFolder}',
+    stopOnEntry = false,
+    showDisassembly = "never",
+  },
+}
+
+local dapui = require('dapui')
+
+dapui.setup({
+  -- You can configure layouts, icons, etc. here.
+  -- Example:
+  layouts = {
+    {
+      elements = {
+        "scopes",
+        "breakpoints",
+        "stacks",
+        "watches"
+      },
+      size = 40,
+      position = "left"
+    },
+    {
+      elements = {
+        "repl",
+        "console"
+      },
+      size = 10,
+      position = "bottom"
+    }
+  },
+})
+
+-- Optionally open/close dap-ui automatically when starting/ending debug sessions
+dap.listeners.after.event_initialized["dapui_config"] = function()
+  dapui.open()
+end
+dap.listeners.before.event_terminated["dapui_config"] = function()
+  dapui.close()
+end
+dap.listeners.before.event_exited["dapui_config"] = function()
+  dapui.close()
+end
+
+require("nvim-dap-virtual-text").setup()
