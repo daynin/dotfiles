@@ -5,7 +5,9 @@ local function map(mode, key, value)
   vim.keymap.set(mode, key, value, { noremap = true })
 end
 
-map('n', '<C-n>', ':Neotree toggle<cr>')
+map('n', '<C-n>', function()
+  require('oil').toggle_float()
+end)
 
 map('n', '<Leader>t', ':TestFile<cr>')
 map('n', '<Leader>tn', ':TestNearest<cr>')

@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
     'clone',
     '--filter=blob:none',
     'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
+    '--branch=stable',
     lazypath,
   })
 end
@@ -14,22 +14,28 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
-  'navarasu/onedark.nvim',
-  'catppuccin/nvim',
-  'vim-test/vim-test',
-  -- 'tpope/vim-fugitive',
-  'christoomey/vim-tmux-navigator',
-  'ziglang/zig.vim',
-  'simrat39/rust-tools.nvim',
-  'David-Kunz/gen.nvim',
-  'sainnhe/everforest',
-  'shaunsingh/nord.nvim',
-  'pest-parser/pest.vim',
-  'mfussenegger/nvim-dap',
-  'theHamsta/nvim-dap-virtual-text',
+  -- Colorschemes
+  { 'navarasu/onedark.nvim', lazy = true },
+  { 'catppuccin/nvim', lazy = true },
+  { 'sainnhe/everforest', lazy = true },
+  { 'shaunsingh/nord.nvim', priority = 1000 }, -- Load early for colorscheme
+  
+  -- Language support (lazy loaded by filetype)
+  { 'vim-test/vim-test', cmd = { 'TestFile', 'TestNearest', 'TestSuite', 'TestLast' } },
+  { 'christoomey/vim-tmux-navigator', keys = { '<C-h>', '<C-j>', '<C-k>', '<C-l>' } },
+  { 'ziglang/zig.vim', ft = 'zig' },
+  { 'simrat39/rust-tools.nvim', ft = 'rust' },
+  { 'David-Kunz/gen.nvim', cmd = 'Gen' },
+  { 'pest-parser/pest.vim', ft = 'pest' },
+  
+  -- Core LSP and completion
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
+  
+  -- Debug adapter (lazy loaded)
+  { 'mfussenegger/nvim-dap', keys = { '<Leader>dc', '<Leader>dn', '<Leader>di', '<Leader>do', '<Leader>db', '<Leader>dB', '<Leader>dr', '<Leader>du' } },
+  { 'theHamsta/nvim-dap-virtual-text', dependencies = 'mfussenegger/nvim-dap' },
   {
     'saghen/blink.cmp',
     lazy = false,
@@ -52,13 +58,13 @@ require('lazy').setup({
       completion = {
         accept = { auto_brackets = { enabled = true } },
         menu = { auto_show = true },
-        documentation = { auto_show = true, auto_show_delay_ms = 200 },
+        documentation = { auto_show = true, auto_show_delay_ms = 500 }, -- Increased delay for performance
       },
     },
     opts_extend = { "sources.default" }
   },
-  { "rcarriga/nvim-dap-ui",                     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
-  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+  { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
   {
     'stevearc/conform.nvim',
     event = { 'BufWritePre' },
@@ -100,64 +106,60 @@ require('lazy').setup({
   {
     'NeogitOrg/neogit',
     dependencies = {
-      'nvim-lua/plenary.nvim',  -- required
-      'sindrets/diffview.nvim', -- optional - Diff integration
-
-      -- Only one of these is needed, not both.
-      'nvim-telescope/telescope.nvim', -- optional
-      'ibhagwan/fzf-lua',              -- optional
+      'nvim-lua/plenary.nvim',
+      'sindrets/diffview.nvim',
+      'nvim-telescope/telescope.nvim',
     },
+    cmd = 'Neogit',
+    keys = { '<Leader>gg' },
     config = true
   },
   {
     'folke/todo-comments.nvim',
     dependencies = { 'nvim-lua/plenary.nvim' },
+    event = 'BufReadPost',
     opts = {}
   },
   {
     'norcalli/nvim-colorizer.lua',
+    event = 'BufReadPost',
     config = function()
-      vim.o.termguicolors = true
       require('colorizer').setup()
-      vim.cmd.colorscheme('nord')
     end
   },
   {
     'lewis6991/gitsigns.nvim',
+    event = 'BufReadPost',
     config = function()
       require('gitsigns').setup()
     end
   },
   {
     'nvim-treesitter/nvim-treesitter',
+    build = ':TSUpdate',
+    event = { 'BufReadPost', 'BufNewFile' },
     config = function()
       require('nvim-treesitter.configs').setup({
-        -- A list of parser names, or 'all' (the five listed parsers should always be installed)
-        ensure_installed = { 'javascript', 'typescript', 'lua', 'vim', 'query' },
-        -- Install parsers synchronously (only applied to `ensure_installed`)
+        ensure_installed = { 'javascript', 'typescript', 'lua', 'vim', 'query', 'rust', 'zig' },
         sync_install = false,
-        -- Automatically install missing parsers when entering buffer
-        -- Recommendation: set to false if you don't have `tree-sitter` CLI installed locally
-        auto_install = true,
+        auto_install = false, -- Disabled for performance
         highlight = {
           enable = true,
-          -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-          -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-          -- Using this option may slow down your editor, and you may see some duplicate highlights.
-          -- Instead of true it can also be a list of languages
           additional_vim_regex_highlighting = false,
         },
+        incremental_selection = { enable = false }, -- Disabled for performance
+        indent = { enable = false }, -- Disabled for performance
       })
-
-      vim.cmd(':TSUpdate')
     end
   },
   {
     'nvim-telescope/telescope.nvim',
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'BurntSushi/ripgrep',
+      'nvim-telescope/telescope-fzf-native.nvim',
     },
+    cmd = 'Telescope',
+    keys = { '<Leader>b', '<C-p>', '<C-f>', 'gd', 'gr' },
     config = function()
       local telescope = require('telescope')
       telescope.setup {
@@ -165,12 +167,23 @@ require('lazy').setup({
           layout_config = {
             preview_width = 0.55,
           },
+          file_ignore_patterns = { "node_modules", ".git/" },
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+          },
         },
         extensions = {
           fzf = {
-            fuzzy = true,                   -- false will only do exact matching
-            override_generic_sorter = true, -- override the generic sorter
-            override_file_sorter = true,    -- override the file sorter
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
           }
         }
       }
@@ -179,60 +192,58 @@ require('lazy').setup({
     end
   },
   {
-    'hoob3rt/lualine.nvim',
+    'echasnovski/mini.statusline',
+    version = false,
+    event = 'VeryLazy',
     config = function()
-      require('lualine').setup({
-        options = {
-          theme = 'nord',
-          component_separators = { '', '' },
-          section_separators = { '', '' },
-          disabled_filetypes = {},
-        },
+      require('mini.statusline').setup({
+        use_icons = true,
+        set_vim_settings = false,
       })
     end
   },
   {
     'windwp/nvim-autopairs',
+    event = 'InsertEnter',
     config = function()
       require('nvim-autopairs').setup()
     end
   },
   {
     'numToStr/Comment.nvim',
+    keys = { '<Leader>cc', '<Leader>bc', '<Leader>c', '<Leader>b' },
     config = function()
       require('Comment').setup({
         toggler = {
-          ---Line-comment toggle keymap
           line = '<Leader>cc',
-          ---Block-comment toggle keymap
           block = '<Leader>bc',
         },
-        ---LHS of operator-pending mappings in NORMAL and VISUAL mode
         opleader = {
-          ---Line-comment keymap
           line = '<Leader>c',
-          ---Block-comment keymap
           block = '<Leader>b',
         },
       })
     end
   },
   {
-    'nvim-neo-tree/neo-tree.nvim',
-    version = 'v2.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-tree/nvim-web-devicons',
-      'MunifTanjim/nui.nvim',
-    },
+    'stevearc/oil.nvim',
+    dependencies = { 'nvim-tree/nvim-web-devicons' },
+    lazy = false,
     config = function()
-      require('neo-tree').setup({
-        filesystem = {
-          follow_current_file = true,
-          filtered_items = {
-            hide_dotfiles = false,
-            hide_gitignored = false,
-          },
+      require('oil').setup({
+        default_file_explorer = true,
+        columns = { 'icon' },
+        view_options = {
+          show_hidden = true,
+        },
+        float = {
+          padding = 2,
+          max_width = 90,
+          max_height = 0,
+        },
+        keymaps = {
+          ['<C-n>'] = 'actions.close',
+          ['q'] = 'actions.close',
         },
       })
     end,
@@ -258,6 +269,8 @@ require('lazy').setup({
       'nvim-neotest/neotest-jest',
       'nvim-neotest/nvim-nio',
     },
+    cmd = { 'Neotest' },
+    keys = { '<Leader>t', '<Leader>tn' },
     config = function()
       require('neotest').setup({
         icons = {
