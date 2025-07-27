@@ -15,7 +15,7 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- Colorschemes
-  { 'shaunsingh/nord.nvim',           priority = 1000 }, -- Load early for colorscheme
+  { 'shaunsingh/nord.nvim',           priority = 1 }, -- Load early for colorscheme
 
   -- Language support (lazy loaded by filetype)
   { 'vim-test/vim-test',              cmd = { 'TestFile', 'TestNearest', 'TestSuite', 'TestLast' } },
@@ -196,10 +196,11 @@ require('lazy').setup({
     end
   },
   {
-    'windwp/nvim-autopairs',
-    event = 'InsertEnter',
+    'echasnovski/mini.pairs',
+    version = false,
+    event = 'VeryLazy',
     config = function()
-      require('nvim-autopairs').setup()
+      require('mini.pairs').setup()
     end
   },
   {
