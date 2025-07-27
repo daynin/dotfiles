@@ -59,7 +59,44 @@ require('lazy').setup({
   },
   { "rcarriga/nvim-dap-ui",                     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-  { 'prettier/vim-prettier',                    build = 'yarn install --immutable' },
+  {
+    'stevearc/conform.nvim',
+    event = { 'BufWritePre' },
+    cmd = { 'ConformInfo' },
+    keys = {
+      {
+        '<leader>f',
+        function()
+          require('conform').format({ async = true, lsp_fallback = true })
+        end,
+        mode = '',
+        desc = 'Format buffer',
+      },
+    },
+    opts = {
+      formatters_by_ft = {
+        javascript = { 'prettier' },
+        typescript = { 'prettier' },
+        javascriptreact = { 'prettier' },
+        typescriptreact = { 'prettier' },
+        json = { 'prettier' },
+        css = { 'prettier' },
+        html = { 'prettier' },
+        markdown = { 'prettier' },
+      },
+
+      formatters = {
+        prettier = {
+          command = 'prettier',
+          args = { '--stdin-filepath', '$FILENAME' },
+          stdin = true,
+        },
+      },
+    },
+    init = function()
+      vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+    end,
+  },
   {
     'NeogitOrg/neogit',
     dependencies = {
