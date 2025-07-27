@@ -27,6 +27,11 @@ require('lazy').setup({
   'pest-parser/pest.vim',
   'mfussenegger/nvim-dap',
   'theHamsta/nvim-dap-virtual-text',
+  'neovim/nvim-lspconfig',
+  'williamboman/mason.nvim',
+  'williamboman/mason-lspconfig.nvim',
+  'hrsh7th/nvim-cmp',
+  'hrsh7th/cmp-nvim-lsp',
   { "rcarriga/nvim-dap-ui",                     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'prettier/vim-prettier',                    build = 'yarn install --immutable' },
@@ -151,28 +156,6 @@ require('lazy').setup({
     end
   },
   {
-    'VonHeikemen/lsp-zero.nvim',
-    branch = 'v1.x',
-    dependencies = {
-      -- LSP Support
-      'neovim/nvim-lspconfig',             -- Required
-      'williamboman/mason.nvim',           -- Optional
-      'williamboman/mason-lspconfig.nvim', -- Optional
-
-      -- Autocompletion
-      'hrsh7th/nvim-cmp',         -- Required
-      'hrsh7th/cmp-nvim-lsp',     -- Required
-      'hrsh7th/cmp-buffer',       -- Optional
-      'hrsh7th/cmp-path',         -- Optional
-      'saadparwaiz1/cmp_luasnip', -- Optional
-      'hrsh7th/cmp-nvim-lua',     -- Optional
-
-      -- Snippets
-      'L3MON4D3/LuaSnip',             -- Required
-      'rafamadriz/friendly-snippets', -- Optional
-    }
-  },
-  {
     'nvim-neo-tree/neo-tree.nvim',
     version = 'v2.x',
     dependencies = {
@@ -239,22 +222,6 @@ require('lazy').setup({
     end
   },
 })
-
-
-local lsp = require('lsp-zero').preset({
-  name = 'minimal',
-  set_lsp_keymaps = true,
-  manage_nvim_cmp = true,
-  suggest_lsp_servers = false,
-})
-
-lsp.ensure_installed({
-  'eslint',
-  'rust_analyzer',
-})
-
-lsp.nvim_workspace()
-lsp.setup()
 
 vim.diagnostic.config({
   virtual_text = true,
@@ -329,3 +296,38 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 require("nvim-dap-virtual-text").setup()
+
+local cmp = require('cmp')
+
+cmp.setup({
+  completion = {
+    autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
+    completeopt = 'menu,menuone,noinsert',
+  },
+  mapping = cmp.mapping.preset.insert({
+    ['<C-Space>'] = cmp.mapping.complete(),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item
+    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
+    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
+  }),
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'buffer' },
+    { name = 'path' },
+  }),
+})
+
+require('mason').setup()
+require('mason-lspconfig').setup({
+  ensure_installed = { 'lua_ls', 'tsserver' },
+})
+local lspconfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp').default_capabilities()
+
+require('mason-lspconfig').setup({
+  function(server_name)
+    lspconfig[server_name].setup({
+      capabilities = capabilities,
+    })
+  end
+})
