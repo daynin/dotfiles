@@ -15,27 +15,20 @@ vim.opt.rtp:prepend(lazypath)
 
 require('lazy').setup({
   -- Colorschemes
-  { 'navarasu/onedark.nvim', lazy = true },
-  { 'catppuccin/nvim', lazy = true },
-  { 'sainnhe/everforest', lazy = true },
-  { 'shaunsingh/nord.nvim', priority = 1000 }, -- Load early for colorscheme
-  
+  { 'shaunsingh/nord.nvim',           priority = 1000 }, -- Load early for colorscheme
+
   -- Language support (lazy loaded by filetype)
-  { 'vim-test/vim-test', cmd = { 'TestFile', 'TestNearest', 'TestSuite', 'TestLast' } },
+  { 'vim-test/vim-test',              cmd = { 'TestFile', 'TestNearest', 'TestSuite', 'TestLast' } },
   { 'christoomey/vim-tmux-navigator', keys = { '<C-h>', '<C-j>', '<C-k>', '<C-l>' } },
-  { 'ziglang/zig.vim', ft = 'zig' },
-  { 'simrat39/rust-tools.nvim', ft = 'rust' },
-  { 'David-Kunz/gen.nvim', cmd = 'Gen' },
-  { 'pest-parser/pest.vim', ft = 'pest' },
-  
+  { 'ziglang/zig.vim',                ft = 'zig' },
+  { 'simrat39/rust-tools.nvim',       ft = 'rust' },
+  { 'David-Kunz/gen.nvim',            cmd = 'Gen' },
+  { 'pest-parser/pest.vim',           ft = 'pest' },
+
   -- Core LSP and completion
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  
-  -- Debug adapter (lazy loaded)
-  { 'mfussenegger/nvim-dap', keys = { '<Leader>dc', '<Leader>dn', '<Leader>di', '<Leader>do', '<Leader>db', '<Leader>dB', '<Leader>dr', '<Leader>du' } },
-  { 'theHamsta/nvim-dap-virtual-text', dependencies = 'mfussenegger/nvim-dap' },
   {
     'saghen/blink.cmp',
     lazy = false,
@@ -63,7 +56,7 @@ require('lazy').setup({
     },
     opts_extend = { "sources.default" }
   },
-  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', lazy = true },
   {
     'stevearc/conform.nvim',
@@ -148,7 +141,7 @@ require('lazy').setup({
           additional_vim_regex_highlighting = false,
         },
         incremental_selection = { enable = false }, -- Disabled for performance
-        indent = { enable = false }, -- Disabled for performance
+        indent = { enable = false },                -- Disabled for performance
       })
     end
   },
@@ -307,84 +300,17 @@ vim.diagnostic.config({
   float = true,
 })
 
-local dap = require('dap')
-
-dap.adapters.codelldb = {
-  type = 'server',
-  port = '${port}',
-  executable = {
-    command = vim.fn.stdpath('data') .. '/mason/packages/codelldb/extension/adapter/codelldb',
-    args = { '--port', '${port}' },
-  }
-}
-
-dap.configurations.rust = {
-  {
-    name = "Debug executable",
-    type = "codelldb",
-    request = "launch",
-    program = function()
-      return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/target/debug/', 'file')
-    end,
-    cwd = '${workspaceFolder}',
-    stopOnEntry = false,
-    showDisassembly = "never",
-  },
-}
-
-local dapui = require('dapui')
-
-dapui.setup({
-  -- You can configure layouts, icons, etc. here.
-  -- Example:
-  layouts = {
-    {
-      elements = {
-        "scopes",
-        "breakpoints",
-        "stacks",
-        "watches"
-      },
-      size = 40,
-      position = "left"
-    },
-    {
-      elements = {
-        "repl",
-        "console"
-      },
-      size = 10,
-      position = "bottom"
-    }
-  },
-})
-
--- Optionally open/close dap-ui automatically when starting/ending debug sessions
-dap.listeners.after.event_initialized["dapui_config"] = function()
-  dapui.open()
-end
-dap.listeners.before.event_terminated["dapui_config"] = function()
-  dapui.close()
-end
-dap.listeners.before.event_exited["dapui_config"] = function()
-  dapui.close()
-end
-
-require("nvim-dap-virtual-text").setup()
-
-
-
 require('mason').setup()
-require('mason-lspconfig').setup({
-  ensure_installed = { 'lua_ls', 'tsserver' },
-})
 local lspconfig = require('lspconfig')
 local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 require('mason-lspconfig').setup({
-  function(server_name)
-    lspconfig[server_name].setup({
-      capabilities = capabilities,
-    })
-  end
+  ensure_installed = { 'lua_ls', 'ts_ls' },
+  handlers = {
+    function(server_name)
+      lspconfig[server_name].setup({
+        capabilities = capabilities,
+      })
+    end
+  }
 })
