@@ -30,8 +30,33 @@ require('lazy').setup({
   'neovim/nvim-lspconfig',
   'williamboman/mason.nvim',
   'williamboman/mason-lspconfig.nvim',
-  'hrsh7th/nvim-cmp',
-  'hrsh7th/cmp-nvim-lsp',
+  {
+    'saghen/blink.cmp',
+    lazy = false,
+    dependencies = 'rafamadriz/friendly-snippets',
+    version = 'v0.*',
+    opts = {
+      keymap = {
+        ['<Tab>'] = { 'select_next', 'fallback' },
+        ['<S-Tab>'] = { 'select_prev', 'fallback' },
+        ['<CR>'] = { 'accept', 'fallback' },
+        ['<C-Space>'] = { 'show', 'show_documentation', 'hide_documentation' },
+      },
+      appearance = {
+        use_nvim_cmp_as_default = true,
+        nerd_font_variant = 'mono'
+      },
+      sources = {
+        default = { 'lsp', 'path', 'snippets', 'buffer' },
+      },
+      completion = {
+        accept = { auto_brackets = { enabled = true } },
+        menu = { auto_show = true },
+        documentation = { auto_show = true, auto_show_delay_ms = 200 },
+      },
+    },
+    opts_extend = { "sources.default" }
+  },
   { "rcarriga/nvim-dap-ui",                     dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
   { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
   { 'prettier/vim-prettier',                    build = 'yarn install --immutable' },
@@ -297,32 +322,14 @@ end
 
 require("nvim-dap-virtual-text").setup()
 
-local cmp = require('cmp')
 
-cmp.setup({
-  completion = {
-    autocomplete = { require('cmp.types').cmp.TriggerEvent.TextChanged },
-    completeopt = 'menu,menuone,noinsert',
-  },
-  mapping = cmp.mapping.preset.insert({
-    ['<C-Space>'] = cmp.mapping.complete(),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item
-    ['<Tab>'] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Insert }),
-    ['<S-Tab>'] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Insert }),
-  }),
-  sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
-    { name = 'buffer' },
-    { name = 'path' },
-  }),
-})
 
 require('mason').setup()
 require('mason-lspconfig').setup({
   ensure_installed = { 'lua_ls', 'tsserver' },
 })
 local lspconfig = require('lspconfig')
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local capabilities = require('blink.cmp').get_lsp_capabilities()
 
 require('mason-lspconfig').setup({
   function(server_name)
