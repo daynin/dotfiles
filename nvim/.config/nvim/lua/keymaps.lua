@@ -6,7 +6,7 @@ local function map(mode, key, value)
 end
 
 map('n', '<C-n>', function()
-  require('oil').toggle_float()
+  require('neo-tree.command').execute({ toggle = true })
 end)
 
 map('n', '<Leader>t', ':TestFile<cr>')

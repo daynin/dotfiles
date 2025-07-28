@@ -231,24 +231,21 @@ require('lazy').setup({
     end
   },
   {
-    'stevearc/oil.nvim',
-    dependencies = { 'nvim-tree/nvim-web-devicons' },
-    lazy = false,
+    'nvim-neo-tree/neo-tree.nvim',
+    version = 'v2.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons',
+      'MunifTanjim/nui.nvim',
+    },
     config = function()
-      require('oil').setup({
-        default_file_explorer = true,
-        columns = { 'icon' },
-        view_options = {
-          show_hidden = true,
-        },
-        float = {
-          padding = 2,
-          max_width = 90,
-          max_height = 0,
-        },
-        keymaps = {
-          ['<C-n>'] = 'actions.close',
-          ['q'] = 'actions.close',
+      require('neo-tree').setup({
+        filesystem = {
+          follow_current_file = true,
+          filtered_items = {
+            hide_dotfiles = false,
+            hide_gitignored = false,
+          },
         },
       })
     end,
