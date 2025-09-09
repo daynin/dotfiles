@@ -72,27 +72,48 @@ require('lazy').setup({
         desc = 'Format buffer',
       },
     },
-    opts = {
-      formatters_by_ft = {
-        javascript = { 'prettier' },
-        typescript = { 'prettier' },
-        javascriptreact = { 'prettier' },
-        typescriptreact = { 'prettier' },
-        json = { 'prettier' },
-        css = { 'prettier' },
-        html = { 'prettier' },
-        markdown = { 'prettier' },
-      },
-
-      formatters = {
-        prettier = {
-          command = 'prettier',
-          args = { '--stdin-filepath', '$FILENAME' },
-          stdin = true,
+    config = function()
+      require('conform').setup({
+        formatters_by_ft = {
+          javascript = { 'prettier' },
+          typescript = { 'prettier' },
+          javascriptreact = { 'prettier' },
+          typescriptreact = { 'prettier' },
+          json = { 'prettier' },
+          css = { 'prettier' },
+          html = { 'prettier' },
+          markdown = { 'prettier' },
         },
-      },
-    },
-    init = function()
+        formatters = {
+          prettier = {
+            command = function(self, ctx)
+              -- Use yarn prettier in workspace projects
+              local util = require('conform.util')
+              if util.root_file({ 'yarn.lock', '.yarnrc.yml' })(self, ctx) then
+                return 'yarn'
+              end
+              return 'prettier'
+            end,
+            args = function(self, ctx)
+              local util = require('conform.util')
+              if util.root_file({ 'yarn.lock', '.yarnrc.yml' })(self, ctx) then
+                return { 'prettier', '--stdin-filepath', '$FILENAME' }
+              end
+              return { '--stdin-filepath', '$FILENAME' }
+            end,
+            stdin = true,
+            cwd = require('conform.util').root_file({
+              '.prettierrc',
+              '.prettierrc.json',
+              '.prettierrc.yml',
+              '.prettierrc.yaml',
+              '.prettierrc.js',
+              'prettier.config.js',
+              'package.json',
+            }),
+          },
+        },
+      })
       vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
     end,
   },
@@ -130,18 +151,27 @@ require('lazy').setup({
   {
     'nvim-treesitter/nvim-treesitter',
     build = ':TSUpdate',
-    event = { 'BufReadPost', 'BufNewFile' },
+    lazy = false,
+    priority = 1000,
     config = function()
       require('nvim-treesitter.configs').setup({
-        ensure_installed = { 'javascript', 'typescript', 'lua', 'vim', 'query', 'rust', 'zig' },
+        ensure_installed = { 'javascript', 'typescript', 'tsx', 'lua', 'vim', 'vimdoc', 'query', 'rust', 'zig', 'html', 'css', 'json', 'markdown', 'markdown_inline' },
         sync_install = false,
-        auto_install = false, -- Disabled for performance
+        auto_install = true,
         highlight = {
           enable = true,
           additional_vim_regex_highlighting = false,
         },
-        incremental_selection = { enable = false }, -- Disabled for performance
-        indent = { enable = false },                -- Disabled for performance
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+          },
+        },
+        indent = { enable = true },
       })
     end
   },
